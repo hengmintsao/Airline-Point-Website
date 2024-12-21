@@ -15,7 +15,7 @@ After the pandemic, people have been earning airline miles through purchasing ai
 - React
 - Styled Component(CSS)/Materical-UI
 
-***Back End***
+***Server-side***
 - Express.js
 
 ***Database***
