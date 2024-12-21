@@ -9,3 +9,20 @@ After the pandemic, people have been earning airline miles through purchasing ai
 - Airline redeem comparison table
 - Mileage cost table
 - Introduction of airline member program
+
+### Tech Stack
+***Front End***
+- React
+- Styled Component/Materical-UI
+
+***Back End***
+- Express.js
+
+***Database***
+- MongoDB
+
+***Deployment/Hosting***
+- Vercel
+
+***Development Environment***
+- VS Code
