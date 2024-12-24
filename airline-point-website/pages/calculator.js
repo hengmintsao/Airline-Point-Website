@@ -8,11 +8,21 @@ const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
 export default function Calculator(){
 
-    const {register, handleSubmit, formState:{errors}} = useForm();
+    const {register, handleSubmit, setValue, getValues, formState:{errors}} = useForm();
     const [distance, setDistance] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     const [submitted, setSubmitted] = useState(false);
 
+    
+    // Handle Swap
+    function handleSwap(){ 
+      const currentOrigin = getValues("origin");
+      const currentDest = getValues("dest");
+      
+      setValue("origin", currentDest);
+      setValue("dest", currentOrigin);
+      
+    };
 
     const getDistanceBetweenPoints = (latitude1, longitude1, latitude2, longitude2, unit = "miles") => {
 
@@ -25,11 +35,9 @@ export default function Calculator(){
         Math.sin(latitude1 * (Math.PI / 180)) * Math.sin(latitude2 * (Math.PI / 180)) +
           Math.cos(latitude1 * (Math.PI / 180)) * Math.cos(latitude2 * (Math.PI / 180)) * Math.cos(theta * (Math.PI / 180))
       );
-    if (unit === "miles") {
+    
       return Math.round(distance * 100) / 100; 
-    } else if (unit === "kilometers") {
-      return Math.round(distance * 1.609344 * 100) / 100; 
-    }
+    
   };
 
     
@@ -91,6 +99,7 @@ export default function Calculator(){
                 {errors.origin && <div className="invalid-feedback">This field is required</div>}
             </Form.Group>
         <br />
+        <Button variant="primary" onClick={handleSwap}>Swap</Button>
         <br />
             <Form.Group className="mb-3">
             <Form.Label>Destination Airport:</Form.Label>
@@ -104,7 +113,7 @@ export default function Calculator(){
          {submitted && (
             <div style={{ marginTop: "20px" }}>
               {distance !== null && (
-                <h5>The distance between the two airports is: <strong>{distance}</strong> kilometers</h5>
+                <h5>The distance between the two airports is: <strong>{distance}</strong> miles</h5>
               )}
               {errorMessage && (
                 <h5 style={{ color: "red" }}>Error: {errorMessage}</h5>
