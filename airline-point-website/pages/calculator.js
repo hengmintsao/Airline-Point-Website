@@ -24,7 +24,9 @@ export default function Calculator(){
       
     };
 
-    const getDistanceBetweenPoints = (latitude1, longitude1, latitude2, longitude2, unit = "miles") => {
+
+    //Calculation function
+    const getDistanceBetweenPoints = (latitude1, longitude1, latitude2, longitude2) => {
 
     let theta = longitude1 - longitude2;
     let distance =
@@ -51,6 +53,7 @@ export default function Calculator(){
 
         try {
             
+          // Origin 
             const originResponse = await fetch(
               `${serverUrl}/calculator?iata=${origin}`,
               {
@@ -62,7 +65,7 @@ export default function Calculator(){
             }
             const originData = await originResponse.json();
       
-            
+            // Destination
             const destResponse = await fetch(
               `${serverUrl}/calculator?iata=${dest}`,
               {
@@ -73,12 +76,12 @@ export default function Calculator(){
               throw new Error(`Failed to fetch destination airport: ${destResponse.status}`);
             }
             const destData = await destResponse.json();
+
             const calculatedDistance = getDistanceBetweenPoints(
                 originData.latitude,
                 originData.longitude,
                 destData.latitude,
                 destData.longitude,
-                "kilometers"
               );
         
               setDistance(calculatedDistance);
@@ -110,6 +113,7 @@ export default function Calculator(){
         <br />
         <Button variant="primary" type="submit">Submit</Button>
     </Form>
+        {/*submit pop-up information*/}
          {submitted && (
             <div style={{ marginTop: "20px" }}>
               {distance !== null && (
