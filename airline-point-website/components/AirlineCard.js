@@ -4,9 +4,12 @@ import Button from "react-bootstrap";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-export default function AirlineCard(){
-    const [airlines, setAirlines] = useState([]);
-    const [error, setError] = useState(null);
+export default function AirlineCard({airline}){
+
+    const { Image, Name, Alliance, Code, Website, _id } = airline;
+
+    // const [airlines, setAirlines] = useState([]);
+    // const [error, setError] = useState(null);
 
 // Get airline from API
 // useEffect(()=>{
@@ -28,7 +31,7 @@ export default function AirlineCard(){
 //     fetchAirlines();
 // },[]);
 
-const { Image, Name, Alliance, Code, Website, Advantage, Disadvantage } = data;
+
 return (
     <>
     <Card className="mb-3" style={{ width: '18rem' }}>
