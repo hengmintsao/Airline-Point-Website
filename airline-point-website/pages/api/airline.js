@@ -23,14 +23,18 @@ export default async function handler(req,res){
     }
 
     try{
-        mongoose.connect(MONGO_URL);
-
+        // if (!mongoose.connection.readyState) {
+        //     console.log("Connecting to MongoDB...");
+        // }
+        await mongoose.connect(MONGO_URL);
+        //console.log("MongoDB connected.");
         const airlines = await Airline.find();
+        //console.log("Fetched airlines:", airlines);
 
         res.status(200).json(airlines);
         
     }catch(error){
-
+        console.error("MongoDB connection error:", error);
         res.status(500).json({error: "Failed to fetch data from MongoDB", details: error.message});
 
     }

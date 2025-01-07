@@ -1,6 +1,5 @@
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import Error from "next/error";
-import Button from "react-bootstrap";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
@@ -54,7 +53,7 @@ return (
           )}
     </Card.Text>
     <Link href={`/airline/${_id}`} passHref legacyBehavior>
-          <Button variant="primary">View Details</Button>
+            <Button variant="primary">View Details</Button>
         </Link>
     </Card.Body>
     </Card>
