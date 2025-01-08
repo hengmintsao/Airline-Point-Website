@@ -13,7 +13,7 @@ const airlineSchema = new mongoose.Schema({
     Image: String,
 });
 
-const Airline = mongoose.models.Airline || mongoose.model("Airline", airlineSchema);
+const Airline = mongoose.models.Airline || mongoose.model("Airline", airlineSchema, "airline"); // Need the third parameter
 
 export default async function handler(req,res){
 
@@ -27,9 +27,9 @@ export default async function handler(req,res){
         //     console.log("Connecting to MongoDB...");
         // }
         await mongoose.connect(MONGO_URL);
-        //console.log("MongoDB connected.");
+        console.log("MongoDB connected.");
         const airlines = await Airline.find();
-        //console.log("Fetched airlines:", airlines);
+        console.log("Fetched airlines:", airlines);
 
         res.status(200).json(airlines);
         

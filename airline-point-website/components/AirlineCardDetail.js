@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Card } from "react-bootstrap";
 
-export default function AirlineCardDetail(){
+export default function AirlineCardDetail({id}){
     const [airline, setAirline] = useState(null);
     const [error, setError] = useState(null);
-    router = useRouter();
-    const {id} = router.query; 
+    // const router = useRouter();
+    // const { id } = router.query; 
 
     useEffect(() =>{
         async function fetchAirlineDetails(){
@@ -21,12 +21,21 @@ export default function AirlineCardDetail(){
             }catch(err){
                 setError(err.message);
             }
-
-            if(id){
-                fetchAirlineDetails();
-            }
+        
+            
+        }
+        if(id){
+            fetchAirlineDetails();
         }
     },[id]);
+
+    if (error) {
+      return <p>Error: {error}</p>;
+    }
+
+    if (!airline) {
+      return <p>Loading...</p>;
+    }
 
     const { Name, Code, Alliance, Website, Image, Advantage, Disadvantage } = airline;
 
@@ -51,6 +60,7 @@ export default function AirlineCardDetail(){
                 "N/A"
               )}
             </Card.Text>
+            {/*Advantages */}
             <Card.Text>
               <strong>Advantages:</strong>
               <ul>
@@ -58,6 +68,7 @@ export default function AirlineCardDetail(){
                   <li key={index}>{adv}</li>
                 ))}
               </ul>
+              {/*Disdvantages */}
               <strong>Disadvantages:</strong>
               <ul>
                 {Disadvantage?.map((dis, index) => (
