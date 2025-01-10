@@ -16,7 +16,8 @@
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.7",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.54.2"
+    "react-hook-form": "^7.54.2",
+    "react-minimal-pie-chart": "^9.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
+import { PieChart } from "react-minimal-pie-chart"; // https://www.npmjs.com/package/react-minimal-pie-chart
 
 
 
@@ -11,6 +12,7 @@ export default function CostPerMiles(){
     const [error, setError] = useState(null);
     const [submitted, setSubmitted] = useState(false);
     const [typeGroup, setTypeGroup] = useState([{ id: 1 }]); //set typeGroup into a array
+    const [pieChartData, setPieChartData] = useState([]); // set piechart data to an empty array
 
     useEffect(() => {
         async function fetchAirlines() {
@@ -33,16 +35,71 @@ export default function CostPerMiles(){
         return <p>Error: {error}</p>;
     }
     
-    async function submitForm(){
-        const data = getValues();
-        console.log(data);
-        setSubmitted(true);
-    }
+
 
     // increase TypeGroup by 1
     function addTypeGroup() {
         setTypeGroup((prev) => [...prev, { id: prev.length + 1 }]); // add 1
-      }
+    }
+
+    // Calculate mileages into pieChartData
+    function calculatePieChartData(data){
+
+        /*
+        1.By flight #FF0000  Red 
+        2.By buying points #FF8000  Orange
+        3.By credit card program #3333FF  Blue
+        4.Others #00CC66  Green
+        */
+        const chartData = [
+            { title: 'By flight', value: 0, color: '#FF0000' },
+            { title: '', value: 0, color: '#FF8000' },
+            { title: 'By credit card program', value: 0, color: '#3333FF' }, 
+            { title: 'Others', value: 0, color: '#CC0066' },
+          ];
+
+
+          typeGroup.forEach((group) =>{
+            
+            const type = data[`type_${group.id}`];
+
+            const mileage = parseInt(data[`typeNumber_${group.id}`], 10 || 0); 
+
+            // By flight
+            if(type === "1"){
+                chartData[0].value += mileage;
+            }
+            
+            // By buying points
+            if(type === "2"){
+                chartData[1].value += mileage;
+            }
+
+            // By credit card program
+            if(type === "3"){
+                chartData[2].value += mileage;
+            }
+
+            // By Others
+            if(type === "4"){
+                chartData[3].value += mileage;
+            }
+          })
+
+          return chartData.filter((pie) => pie.value > 0); // filter if the value is 0
+    }
+
+    function submitForm(){
+        const data = getValues();
+        //console.log(data); test code
+
+        const chartData = calculatePieChartData(data);
+        //console.log('PieChart Data:', chartData); //test code
+        setPieChartData(chartData);
+
+        setSubmitted(true);
+    }
+
 
     return(
         <>
@@ -99,44 +156,8 @@ export default function CostPerMiles(){
     </Form>
         {/*submit pop-up information*/}
          {submitted && (
-            <div style={{ marginTop: "20px" }}>
-              {distance !== null && (
-                <h5>The distance between the two airports is: <strong>{distance}</strong> miles</h5>
-              )}
-              {errorMessage && (
-                <h5 style={{ color: "red" }}>Error: {errorMessage}</h5>
-              )}
-            </div>
+            <PieChart data={pieChartData}/> // Pie chart
           )}
          </>
-        // <>
-        // {/*1.Please input the airline and miles required: */}
-        // <div class="input-group mb-3">
-        // <label class="input-group-text" for="inputGroupSelect01">Please select airline</label>
-        // <select class="form-select" id="inputGroupSelect01">
-        // <option selected>Choose...</option>
-        // {/*select airline */}
-        // {airlineName.map((airline, index) => (
-        //     <option key={index} value={airline.id}>
-        //       {airline.Name}
-        //     </option>
-        //   ))}
-        // </select>
-        // </div>
-        // <br />
-        // <div class="mb-3">
-        // <label for="mileControlInput" class="form-label">Please enter the mileages:</label>
-        // <input type="number" class="form-control" id="mileControlInput" placeholder=""></input>
-        // </div>
-        // </>
-        
-        
-
-        //2.Please insert your method of earning mileage: by flying, credit card program, buying points from their website....
-        //  Bootstrap range https://getbootstrap.com/docs/5.3/forms/range/
-        //  Input groups https://getbootstrap.com/docs/5.3/forms/input-group/
-
-
-        //3. submit and show the result (Hope there is a pie chart or something which and have visialization format to see the miles)
     )
 }
