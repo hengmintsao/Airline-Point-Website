@@ -4,6 +4,13 @@ import { Form, Button } from "react-bootstrap";
 import { PieChart } from "react-minimal-pie-chart"; // https://www.npmjs.com/package/react-minimal-pie-chart
 
 
+/* =============================================================History==============================================================================
+1. Date: 2025-Jan-09 Description: Implement select airline, enter mileage, earn type(with "+" button to create new earn type) and find resource online to implement piechart. #TO-DO: add input cost for each earn type. 
+
+
+
+=====================================================================================================================================================
+*/
 
 export default function CostPerMiles(){
 
@@ -157,6 +164,7 @@ export default function CostPerMiles(){
         {/*submit pop-up information*/}
          {submitted && (
             <PieChart data={pieChartData}/> // Pie chart
+            
           )}
          </>
     )
