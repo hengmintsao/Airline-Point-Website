@@ -1,6 +1,15 @@
 import { useEffect, useState } from "react";
 import AirlineCard from "@/components/AirlineCard";
 import { Row, Col } from "react-bootstrap";
+
+/* =============================================================History==============================================================================
+1. Date: 2025-Jan-07 Description: About.js can view card list, CardDetail basic feature complete. #TO-DO: Add new functionality: Sort by different attributes(nationality, alliance, English proficiency etc) 
+
+
+
+=====================================================================================================================================================
+*/
+
 export default function About(){
 
     const [airlines, setAirlines] = useState([]);
