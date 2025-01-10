@@ -1,5 +1,15 @@
 import mongoose from "mongoose";
 
+/* =============================================================History==============================================================================
+1. Date: 2025-Jan-07 Description: About.js can view card list, CardDetail basic feature complete. #TO-DO: Might need to consider storage folder and names might too similar to another folder
+
+
+
+=====================================================================================================================================================
+*/
+
+
+// This [id].js file connects to MongoDB, defines the Airline schema and model, and retrieves an airline's details based on its ID.
 const MONGO_URL = process.env.MONGO_URL
 
 //Define airline Schema and model
