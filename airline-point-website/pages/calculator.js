@@ -2,6 +2,17 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { Button, Form} from "react-bootstrap";
 
+/* =============================================================History==============================================================================
+1. Date: 2024-Dec-22 Description: Update calculator.js. Basic features, connect to API to get info, calculate miles by two airports. #TO-DO: Add swap button feature to origin and dest airport
+2. Date: 2024-Dec-23 Description: Swap feature complete. #TO-DO: UI, but currently no ideas at the moment
+
+
+=====================================================================================================================================================
+*/
+
+
+
+
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
  
