@@ -3,6 +3,14 @@ import Error from "next/error";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
+/* =============================================================History==============================================================================
+1. Date: 2025-Jan-07 Description: About.js can view card list, CardDetail basic feature complete. #TO-DO: The code needs to be concise. Remove any unnecessary or unused code during subsequent reviews
+
+
+
+=====================================================================================================================================================
+*/
+
 export default function AirlineCard({airline}){
 
     const { Image, Name, Alliance, Code, Website, _id } = airline;

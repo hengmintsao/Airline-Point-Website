@@ -2,6 +2,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Card } from "react-bootstrap";
 
+/* =============================================================History==============================================================================
+1. Date: 2025-Jan-07 Description: About.js can view card list, CardDetail basic feature complete. #TO-DO: The code needs to be concise. Remove any unnecessary or unused code during subsequent reviews
+
+
+
+=====================================================================================================================================================
+*/
+
 export default function AirlineCardDetail({id}){
     const [airline, setAirline] = useState(null);
     const [error, setError] = useState(null);
