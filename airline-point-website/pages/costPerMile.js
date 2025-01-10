@@ -12,6 +12,9 @@ import { PieChart } from "react-minimal-pie-chart"; // https://www.npmjs.com/pac
 =====================================================================================================================================================
 */
 
+// This CostPerMiles calculator allows users to calculate the cost of earning required miles.
+// Users can input their desired mileage, select earning types (By flights, buying points...etc), 
+// and add costs for each earning type. The data is then visualized using a pie chart.
 export default function CostPerMiles(){
 
     const {register, handleSubmit, getValues, formState:{errors}} = useForm();
