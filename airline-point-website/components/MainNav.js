@@ -1,5 +1,5 @@
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-
+import Link from "next/link";
 
 export default function MainNav(){
 
@@ -15,6 +15,10 @@ export default function MainNav(){
                 <Nav.Link href="/about">About</Nav.Link>
                 <Nav.Link href="/calculator">Airport Calculator</Nav.Link>
                 <Nav.Link href="/costPerMile">Mile cost Calculator</Nav.Link>
+                {/* implement history */}
+                <Link href="/history" passHref legacyBehavior>
+                  <Nav.Link>History</Nav.Link>
+                  </Link>
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">

@@ -2,11 +2,13 @@ import { useForm } from "react-hook-form"
 import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { PieChart } from "react-minimal-pie-chart"; // https://www.npmjs.com/package/react-minimal-pie-chart
+import { useAtom } from "jotai";
+import { searchHistoryAtom } from "@/store";
 
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-09 Description: Implement select airline, enter mileage, earn type(with "+" button to create new earn type) and find resource online to implement piechart. #TO-DO: add input cost for each earn type. 
-
+2. Date: 2025-Jan-11 Description: Basic history feature completed.   #TO-DO: only MileCostCalculator history completed, might consider others calculator?
 
 
 =====================================================================================================================================================
@@ -17,12 +19,16 @@ import { PieChart } from "react-minimal-pie-chart"; // https://www.npmjs.com/pac
 // and add costs for each earning type. The data is then visualized using a pie chart.
 export default function CostPerMiles(){
 
+    //const router = useRouter();
     const {register, handleSubmit, getValues, formState:{errors}} = useForm();
     const [airlineName, setAirlineName] = useState([]);
     const [error, setError] = useState(null);
     const [submitted, setSubmitted] = useState(false);
     const [typeGroup, setTypeGroup] = useState([{ id: 1 }]); //set typeGroup into a array
     const [pieChartData, setPieChartData] = useState([]); // set piechart data to an empty array
+    const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
+
+
 
     useEffect(() => {
         async function fetchAirlines() {
@@ -44,6 +50,7 @@ export default function CostPerMiles(){
     if (error) {
         return <p>Error: {error}</p>;
     }
+    
     
 
 
@@ -100,13 +107,19 @@ export default function CostPerMiles(){
     }
 
     function submitForm(){
+        
         const data = getValues();
-        //console.log(data); test code
+        console.log(data); //test code
 
         const chartData = calculatePieChartData(data);
         //console.log('PieChart Data:', chartData); //test code
         setPieChartData(chartData);
+        setSearchHistory(current => {
+            const newHistory = [...current, data];
+            //console.log('After push -> newHistory:', newHistory); // test code
 
+            return newHistory;
+          });
         setSubmitted(true);
     }
 
