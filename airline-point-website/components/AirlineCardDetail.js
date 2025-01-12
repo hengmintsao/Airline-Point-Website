@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Card } from "react-bootstrap";
+import { useAtom } from "jotai";
+import { comparsionAtom } from "@/store";
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-07 Description: About.js can view card list, CardDetail basic feature complete. #TO-DO: The code needs to be concise. Remove any unnecessary or unused code during subsequent reviews
-
-
+2. Date: 2025-Jan-12 Description: Using Jotai to implement comparsion table(similar to shopping cart feature), add/delete in AirlineCardDetail.js and shown on comparsion.js. #TO-DO: might need to change required information.
 
 =====================================================================================================================================================
 */
@@ -13,6 +14,29 @@ import { Card } from "react-bootstrap";
 export default function AirlineCardDetail({id}){
     const [airline, setAirline] = useState(null);
     const [error, setError] = useState(null);
+    const [comparsionList, setComparsionList] = useAtom(comparsionAtom);
+
+    const [showAdded, setShowAdded] = useState(comparsionList.includes(id));
+
+    useEffect(() => {
+      //console.log("comparsionList before add", comparsionList); test code
+      setShowAdded(comparsionList.includes(id));
+      //console.log("comparsionList after add", comparsionList); test code
+    }, [comparsionList, id]);
+
+
+    // Function to control comparsion List
+    function comparsionClicked(){
+      if(showAdded === true){
+        setComparsionList(current => current.filter(com => com != id));
+        setShowAdded(false);
+      }else{
+        setComparsionList(current => [...current, id]);
+        //console.log("comparsionList before add", comparsionList); test code
+        setShowAdded(true);
+      }
+    }
+
     // const router = useRouter();
     // const { id } = router.query; 
 
@@ -83,6 +107,8 @@ export default function AirlineCardDetail({id}){
                   <li key={index}>{dis}</li>
                 ))}
               </ul>
+              {/*Button for add/delete it into comparsionList*/}
+              <button variant={showAdded ? "primary" : "outline-primary"} onClick={comparsionClicked}>{showAdded ? "+ Comparsion (added)" : "+ Compare"}</button>
             </Card.Text>
           </Card.Body>
         </Card>
