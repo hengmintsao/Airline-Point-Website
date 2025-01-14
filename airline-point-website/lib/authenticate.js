@@ -8,7 +8,7 @@ import { jwtDecode } from "jwt-decode";
 =====================================================================================================================================================
 */
 
-
+// Authenticates user with their username and password and retrieves token
 export async function authenticateUser(user, password){
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/login`,{
         method: 'POST',
@@ -28,12 +28,13 @@ export async function authenticateUser(user, password){
     }
 }
 
+// Store token into local storage
 function setToken(token){
     localStorage.setItem('access_token', token);
 }
 
 
-
+// Get token from local storage
 export function getToken(){
     try{
         return localStorage.getItem('access_token');
@@ -42,11 +43,15 @@ export function getToken(){
     }
 }
 
+
+// Remove token from local storage
 export function removeToken(){
     localStorage.removeItem('access_token');
 }
 
 
+
+// Decode token 
 export function readToken(){
     try{
         const token = getToken();
@@ -56,11 +61,16 @@ export function readToken(){
     }
 }
 
+
+// Chech if user with token
 export function isAuthenticated(){
     const token = readToken();
     return token ? true : false;
 }
 
+
+
+// Register a new user
 export async function registerUser(user, password, password2){
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/register`, {
