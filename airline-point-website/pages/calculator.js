@@ -66,7 +66,7 @@ export default function Calculator(){
             
           // Origin 
             const originResponse = await fetch(
-              `${serverUrl}/calculator?iata=${origin}`,
+              `${serverUrl}/api/user/calculator?iata=${origin}`,
               {
                 method: "GET",
               }
@@ -78,7 +78,7 @@ export default function Calculator(){
       
             // Destination
             const destResponse = await fetch(
-              `${serverUrl}/calculator?iata=${dest}`,
+              `${serverUrl}/api/user/calculator?iata=${dest}`,
               {
                 method: "GET",
               }
