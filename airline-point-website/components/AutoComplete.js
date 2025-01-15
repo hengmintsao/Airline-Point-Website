@@ -8,7 +8,7 @@ import { useState } from "react";
 =====================================================================================================================================================
 */
 
-export default function AutoComplete({options, onChange}){
+export default function AutoComplete({options = [], onChange}){
 
     const [value, setValue] = useState("");
     const [showOptions, setShowOptions] = useState(false);
@@ -22,18 +22,19 @@ export default function AutoComplete({options, onChange}){
 
         if(value.length > 0){
             
-        const filtered = options.filter(option =>{
-            option.toLowerCase().includes(value.toLowerCase());
-        });
+            const filtered = options.filter(option =>{ // has error
+                option.toLowerCase().includes(value.toLowerCase());
+            });
 
-        setFilterOptions(filtered);
-        setShowOptions(true);
+            setFilterOptions(filtered);
+            setShowOptions(true);
         }else{
+
             setShowOptions(false);
         }
 
     }
-    const handleSuggestionClick = suggestions =>{
+    const handleSuggestionClick = suggestions => {
         setValue(suggestions);
         setShowOptions(false);
         onChange(suggestions);

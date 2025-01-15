@@ -1,10 +1,12 @@
 import { registerUser } from "@/lib/authenticate";
+import AutoComplete from "@/components/AutoComplete";
 import { Card, Form, Button, Alert } from "react-bootstrap";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 
 /* =============================================================History==============================================================================
-1. Date: 2025-Jan-14 Description: Create Register page, basic implementation   #TO-DO: AutoComplete and other CSS styles
+1. Date: 2025-Jan-14 Description: Create Register page, basic implementation   #TO-DO: AutoComplete(Not yet finished, has errors)
 
 
 
@@ -12,7 +14,7 @@ import { useState } from "react";
 */
 
 
-export default function Register(props){
+export default function Register(){
 
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
@@ -22,6 +24,34 @@ export default function Register(props){
     const [preferenceCarrier, setPreferenceCarrier] = useState("");
     const [preferenceAlliance, setPreferenceAlliance] = useState("");
     const [warning , setWarning] = useState("");
+    const [nationalityOption, setNationalityOption] = useState([]);
+    
+
+    // Has CORS errors
+    useEffect(() =>{
+
+        async function fetchAllNationalityDetails(){
+
+            try{
+                const response = await fetch(`https://www.apicountries.com/countries`);
+                if(!response.ok){
+                    throw new Error("Failed to fetch countries details");
+                }
+                const data = await response.json();
+                const countries = data.map((country) =>country.name);
+                setNationalityOption(countries);
+            }catch(err){
+                setWarning(err.message);
+                setNationalityOption([]);
+            }
+        
+            
+        }
+        
+        fetchAllNationalityDetails();
+    },[]);
+
+    const {name} = nationalityOption; // has error
 
     const router = useRouter();
 
@@ -58,8 +88,11 @@ return(
         </Form.Group>
         <br />
         <Form.Group>
-          <Form.Label>Nationality:</Form.Label><Form.Control type="text" id="nationality" name="nationality" onChange={e => setNationality(e.target.value)}/>
+            {/* has to fix */}
+          <Form.Label>Nationality:</Form.Label><AutoComplete ooptions={Array.isArray(nationalityOption) ? nationalityOption : []} onChange={(value) => setNationality(value || "")}/>
         </Form.Group>
+        <br />
+        <br />
         <br />
         <Form.Group>
           <Form.Label>Main Airport:</Form.Label><Form.Control type="text" id="nationality" name="nationality" onChange={e => setMainAirport(e.target.value)}/>
