@@ -22,12 +22,11 @@ export default function AutoComplete({options = [], onChange}){
 
         if(value.length > 0){
             
-            const filtered = options.filter(option =>{ // has error
-                option.toLowerCase().includes(value.toLowerCase());
-            });
-
+            const filtered = options.filter(option =>
+              option.toLowerCase().includes(value.toLowerCase()));
+            //console.log("Filtered options are: " ,filtered); // test
             setFilterOptions(filtered);
-            setShowOptions(true);
+            setShowOptions(filtered.length > 0);
         }else{
 
             setShowOptions(false);
@@ -35,6 +34,7 @@ export default function AutoComplete({options = [], onChange}){
 
     }
     const handleSuggestionClick = suggestions => {
+        //console.log("Selected suggestion:", suggestions);
         setValue(suggestions);
         setShowOptions(false);
         onChange(suggestions);

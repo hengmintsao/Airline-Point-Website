@@ -44,8 +44,9 @@ export default function Register(){
                   throw new Error("Invalid data format received");
               }
               const countries = data.map((country) => country.name || "Unknown Country");
-                console.log("Those datas are: ", countries);
+                //console.log("Those datas are: ", countries); // test codes
                 setNationalityOption(countries);
+
             }catch(err){
                 setWarning(err.message);
                 setNationalityOption([]);
@@ -57,7 +58,6 @@ export default function Register(){
         fetchAllNationalityDetails();
     },[]);
 
-    const {name} = nationalityOption; // has error
 
     const router = useRouter();
 
@@ -95,7 +95,9 @@ return(
         <br />
         <Form.Group>
             {/* has to fix */}
-          <Form.Label>Nationality:</Form.Label><AutoComplete ooptions={Array.isArray(nationalityOption) ? nationalityOption : []} onChange={(value) => setNationality(value || "")}/>
+          <Form.Label>Nationality:</Form.Label><AutoComplete options={Array.isArray(nationalityOption) ? nationalityOption : []} onChange={(value) => {
+        /*console.log("Selected nationality:", value);*/ setNationality(value || ""); /*console.log("Nationality options:", nationalityOption);*/}}  /> 
+        
         </Form.Group>
         <br />
         <br />
