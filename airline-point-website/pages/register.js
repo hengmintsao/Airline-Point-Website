@@ -14,6 +14,8 @@ import { useState, useEffect } from "react";
 */
 
 
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+
 export default function Register(){
 
     const [user, setUser] = useState("");
@@ -33,12 +35,16 @@ export default function Register(){
         async function fetchAllNationalityDetails(){
 
             try{
-                const response = await fetch(`https://www.apicountries.com/countries`);
+                const response = await fetch(`${serverUrl}/api/users/countries`);
                 if(!response.ok){
                     throw new Error("Failed to fetch countries details");
                 }
                 const data = await response.json();
-                const countries = data.map((country) =>country.name);
+                if (!Array.isArray(data)) {
+                  throw new Error("Invalid data format received");
+              }
+              const countries = data.map((country) => country.name || "Unknown Country");
+                console.log("Those datas are: ", countries);
                 setNationalityOption(countries);
             }catch(err){
                 setWarning(err.message);
@@ -99,11 +105,11 @@ return(
         </Form.Group>
         <br />
         <Form.Group>
-          <Form.Label>Preference Carrier:</Form.Label><Form.Control type="text" id="nationality" name="nationality" onChange={e => setPreferenceCarrier(e.target.value)}/>
+          <Form.Label>Preference Carrier:</Form.Label><Form.Control type="text" id="preferenceCarrier" name="preferenceCarrier" onChange={e => setPreferenceCarrier(e.target.value)}/>
         </Form.Group>
         <br />
         <Form.Group>
-          <Form.Label>Preference Alliance:</Form.Label><Form.Control type="text" id="nationality" name="nationality" onChange={e => setPreferenceAlliance(e.target.value)}/>
+          <Form.Label>Preference Alliance:</Form.Label><Form.Control type="text" id="preferenceAlliance" name="preferenceAlliance" onChange={e => setPreferenceAlliance(e.target.value)}/>
         </Form.Group>
         <br />
         <Button variant="primary" className="pull-right" type="submit">Register</Button>
