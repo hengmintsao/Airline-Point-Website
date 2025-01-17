@@ -1,6 +1,7 @@
 import { useAtom } from "jotai";
 import { searchHistoryAtom } from "@/store";
 import { Card, ListGroup, Button} from "react-bootstrap";
+import { removeFromHistory } from "@/lib/userData";
 
 
 /* =============================================================History==============================================================================
@@ -29,14 +30,15 @@ export default function History(){
 
     }
 
-    function removeHistoryClicked(e, index){
+    async function removeHistoryClicked(e, index){
 
         e.stopPropagation(); // stop the event from trigging other events 
-        setSearchHistory(current =>{
-            let x = [...current];
-            x.splice(index, 1);
-            return x;
-        })
+        // setSearchHistory(current =>{
+        //     let x = [...current];
+        //     x.splice(index, 1);
+        //     return x;
+        // });
+        setSearchHistory(await removeFromHistory(searchHistory[index]))
 
     }
 
