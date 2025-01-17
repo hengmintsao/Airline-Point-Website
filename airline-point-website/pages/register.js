@@ -21,6 +21,7 @@ export default function Register(){
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
+    const [email, setEmail] = useState("");
     const [nationality, setNationality] = useState("");
     const [mainAirport, setMainAirport] = useState("");
     const [preferenceCarrier, setPreferenceCarrier] = useState("");
@@ -63,8 +64,9 @@ export default function Register(){
 
 async function handleSubmit(e){
     e.preventDefault();
+    console.log("Submitting with nationality:", nationality);
     try{
-        await registerUser(user, password, password2, nationality, mainAirport, preferenceCarrier, preferenceAlliance);
+        await registerUser(user, password, password2, email, nationality, mainAirport, preferenceCarrier, preferenceAlliance);
         router.push('/login');
 
     }catch(err){
@@ -94,16 +96,17 @@ return(
         </Form.Group>
         <br />
         <Form.Group>
-            {/* has to fix */}
-          <Form.Label>Nationality:</Form.Label><AutoComplete options={Array.isArray(nationalityOption) ? nationalityOption : []} onChange={(value) => {
-        /*console.log("Selected nationality:", value);*/ setNationality(value || ""); /*console.log("Nationality options:", nationalityOption);*/}}  /> 
-        
+          <Form.Label>Email:</Form.Label><Form.Control type="text" id="email" name="email" onChange={e => setEmail(e.target.value)}/>
+        </Form.Group>
+        <br/ >
+        <Form.Group>
+          <Form.Label>Nationality:</Form.Label><AutoComplete type="text" id="nationality" name="nationality" options={Array.isArray(nationalityOption) ? nationalityOption : []} onChange={(value) => {
+        console.log("Selected nationality:", value); setNationality(value || ""); console.log("Nationality options:", nationalityOption);}}  /> 
         </Form.Group>
         <br />
-        <br />
-        <br />
+
         <Form.Group>
-          <Form.Label>Main Airport:</Form.Label><Form.Control type="text" id="nationality" name="nationality" onChange={e => setMainAirport(e.target.value)}/>
+          <Form.Label>Main Airport:</Form.Label><Form.Control type="text" id="mainAirport" name="mainAirport" onChange={e => setMainAirport(e.target.value)}/>
         </Form.Group>
         <br />
         <Form.Group>

@@ -10,7 +10,7 @@ import { jwtDecode } from "jwt-decode";
 
 // Authenticates user with their username and password and retrieves token
 export async function authenticateUser(user, password){
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/login`,{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/login`,{
         method: 'POST',
         body: JSON.stringify({userName: user, password: password}),
         headers:{
@@ -73,9 +73,9 @@ export function isAuthenticated(){
 // Register a new user
 export async function registerUser(user, password, password2){
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/register`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/register`, {
         method: 'POST',
-        body: JSON.stringify({userName:user, password, password2:password2}),
+        body: JSON.stringify({userName:user, password, password2:password2, email, nationality, mainAirport}),
         headers:{
             'content-type':'application/json',
         },

@@ -18,7 +18,7 @@ export default function AutoComplete({options = [], onChange}){
     const handleChange = e => {
         const value = e.target.value;
         setValue(e.target.value);
-    
+        onChange(value);
 
         if(value.length > 0){
             
@@ -33,7 +33,7 @@ export default function AutoComplete({options = [], onChange}){
         }
 
     }
-    const handleSuggestionClick = suggestions => {
+    const handleSuggestionClick = (suggestions) => {
         //console.log("Selected suggestion:", suggestions);
         setValue(suggestions);
         setShowOptions(false);
