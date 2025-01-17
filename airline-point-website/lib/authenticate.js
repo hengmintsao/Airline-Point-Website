@@ -14,7 +14,7 @@ export async function authenticateUser(user, password){
         method: 'POST',
         body: JSON.stringify({userName: user, password: password}),
         headers:{
-            'content-type': 'application/json',
+            'Content-type': 'application/json',
         },
     });
 
@@ -77,7 +77,7 @@ export async function registerUser(user, password, password2){
         method: 'POST',
         body: JSON.stringify({userName:user, password, password2:password2, email, nationality, mainAirport}),
         headers:{
-            'content-type':'application/json',
+            'Content-type':'application/json',
         },
     });
 
