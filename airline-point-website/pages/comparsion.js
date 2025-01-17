@@ -6,7 +6,7 @@ import { Row, Col, Card } from "react-bootstrap";
 
 // /* =============================================================History==============================================================================
 // 1. Date: 2025-Jan-12 Description: Using Jotai to implement comparsion table(similar to shopping cart feature), add/delete in AirlineCardDetail.js and shown on comparsion.js. #TO-DO: might need to change required information.
-
+// 1. Date: 2025-Jan-17 Description:  update useEffect  #TO-DO: might need to change required information.
 
 // =====================================================================================================================================================
 // */
@@ -14,13 +14,17 @@ import { Row, Col, Card } from "react-bootstrap";
 
 export default function Comparsion() {
   const [comparsionList] = useAtom(comparsionAtom);
-  
   const [airlinesData, setAirlinesData] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
  
     async function fetchAllAirlines() {
+
+      if (!comparsionList || comparsionList.length === 0) {
+        setAirlinesData([]); 
+        return;
+      }
       try {
         const results = await Promise.all(
           comparsionList.map(async (id) => {

@@ -3,11 +3,12 @@ import { useRouter } from "next/router";
 import { Card } from "react-bootstrap";
 import { useAtom } from "jotai";
 import { comparsionAtom } from "@/store";
+import { addToComparsion, removeComparsion } from "@/lib/userData";
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-07 Description: About.js can view card list, CardDetail basic feature complete. #TO-DO: The code needs to be concise. Remove any unnecessary or unused code during subsequent reviews
 2. Date: 2025-Jan-12 Description: Using Jotai to implement comparsion table(similar to shopping cart feature), add/delete in AirlineCardDetail.js and shown on comparsion.js. #TO-DO: might need to change required information.
-
+3. Date: 2025-Jan-17 Description: Change showAdded, update useEffect and import from userdata to fit features #TO-DO: might need to change required information.
 =====================================================================================================================================================
 */
 
@@ -16,22 +17,24 @@ export default function AirlineCardDetail({id}){
     const [error, setError] = useState(null);
     const [comparsionList, setComparsionList] = useAtom(comparsionAtom);
 
-    const [showAdded, setShowAdded] = useState(comparsionList.includes(id));
+    const [showAdded, setShowAdded] = useState(false); // change to false
 
     useEffect(() => {
       //console.log("comparsionList before add", comparsionList); test code
-      setShowAdded(comparsionList.includes(id));
+      setShowAdded(comparsionList?.includes(id)); // modify comparsionList? here
       //console.log("comparsionList after add", comparsionList); test code
     }, [comparsionList, id]);
 
 
-    // Function to control comparsion List
-    function comparsionClicked(){
+    // Function to control comparsion List, change to async
+    async function comparsionClicked(){
       if(showAdded === true){
-        setComparsionList(current => current.filter(com => com != id));
+        setComparsionList(await removeComparsion(id)); // change to this
+        //setComparsionList(current => current.filter(com => com != id));
         setShowAdded(false);
       }else{
-        setComparsionList(current => [...current, id]);
+        setComparsionList(await addToComparsion(id)); // change to this
+        //setComparsionList(current => [...current, id]);
         //console.log("comparsionList before add", comparsionList); test code
         setShowAdded(true);
       }
