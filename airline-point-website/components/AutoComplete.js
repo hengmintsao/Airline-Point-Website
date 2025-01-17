@@ -8,7 +8,7 @@ import { useState } from "react";
 =====================================================================================================================================================
 */
 
-export default function AutoComplete({options = [], onChange}){
+export default function AutoComplete({options = [], onChange, id, name}){
 
     const [value, setValue] = useState("");
     const [showOptions, setShowOptions] = useState(false);
@@ -17,8 +17,13 @@ export default function AutoComplete({options = [], onChange}){
 
     const handleChange = e => {
         const value = e.target.value;
-        setValue(e.target.value);
-        onChange(value);
+        if (typeof value === "string") {
+          console.log("Current is: ",value);
+          setValue(value);
+          onChange(value);
+        } else {
+          console.error("Invalid value detected:", value);
+        }
 
         if(value.length > 0){
             
@@ -47,9 +52,11 @@ export default function AutoComplete({options = [], onChange}){
         <div style={{ position: "relative" }}>
       <input
         type="text"
+        id={id}
+        name={name}
         value={value}
         onChange={handleChange}
-        onBlur={() => setTimeout(() => setShowOptions(false), 100)} // Delay to allow option click
+        /*onBlur={() => setTimeout(() => setShowOptions(false), 100)}*/ // Delay to allow option click
         onFocus={() => setShowOptions(true)}
       />
       {showOptions && (

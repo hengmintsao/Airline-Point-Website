@@ -100,8 +100,8 @@ return(
         </Form.Group>
         <br/ >
         <Form.Group>
-          <Form.Label>Nationality:</Form.Label><AutoComplete type="text" id="nationality" name="nationality" options={Array.isArray(nationalityOption) ? nationalityOption : []} onChange={(value) => {
-        console.log("Selected nationality:", value); setNationality(value || ""); console.log("Nationality options:", nationalityOption);}}  /> 
+          <Form.Label>Nationality:</Form.Label><AutoComplete id="nationality" name="nationality" options={Array.isArray(nationalityOption) ? nationalityOption : []} onChange={(value) => {
+        /*console.log("Selected nationality:", value);*/ setNationality(value || ""); /*console.log("Nationality options:", nationalityOption);*/}}  /> 
         </Form.Group>
         <br />
 
