@@ -4,11 +4,13 @@ import { Form, Button } from "react-bootstrap";
 import { PieChart } from "react-minimal-pie-chart"; // https://www.npmjs.com/package/react-minimal-pie-chart
 import { useAtom } from "jotai";
 import { searchHistoryAtom } from "@/store";
+import { addToHistory } from "@/lib/userData";
 
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-09 Description: Implement select airline, enter mileage, earn type(with "+" button to create new earn type) and find resource online to implement piechart. #TO-DO: add input cost for each earn type. 
 2. Date: 2025-Jan-11 Description: Basic history feature completed.   #TO-DO: only MileCostCalculator history completed, might consider others calculator?
+3. Date: 2025-Jan-17 Description: Add addToHistory, update submitform function   #TO-DO: Haven't test
 
 
 =====================================================================================================================================================
@@ -106,7 +108,7 @@ export default function CostPerMiles(){
           return chartData.filter((pie) => pie.value > 0); // filter if the value is 0
     }
 
-    function submitForm(){
+    async function submitForm(){
         
         const data = getValues();
         console.log(data); //test code
@@ -114,12 +116,13 @@ export default function CostPerMiles(){
         const chartData = calculatePieChartData(data);
         //console.log('PieChart Data:', chartData); //test code
         setPieChartData(chartData);
-        setSearchHistory(current => {
-            const newHistory = [...current, data];
-            //console.log('After push -> newHistory:', newHistory); // test code
+        setSearchHistory(await addToHistory(data));
+        // setSearchHistory(current => {
+        //     const newHistory = [...current, data];
+        //     //console.log('After push -> newHistory:', newHistory); // test code
 
-            return newHistory;
-          });
+        //     return newHistory;
+        //   });
         setSubmitted(true);
     }
 
