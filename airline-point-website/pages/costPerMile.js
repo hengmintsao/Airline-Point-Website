@@ -116,7 +116,17 @@ export default function CostPerMiles(){
         const chartData = calculatePieChartData(data);
         //console.log('PieChart Data:', chartData); //test code
         setPieChartData(chartData);
-        setSearchHistory(await addToHistory(data));
+
+        try {
+            await addToHistory(data);
+            console.log('History successfully added');
+        } catch (error) {
+            console.error('Failed to add history:', error);
+        }
+    
+
+        //setSearchHistory(await addToHistory(data));
+
         // setSearchHistory(current => {
         //     const newHistory = [...current, data];
         //     //console.log('After push -> newHistory:', newHistory); // test code
