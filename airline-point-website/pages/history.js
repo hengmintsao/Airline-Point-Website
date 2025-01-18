@@ -16,6 +16,7 @@ export default function History(){
 
 
     const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
+    if(!searchHistory) return null; 
 
     let parasedHistory = [];
 
@@ -58,7 +59,7 @@ export default function History(){
         <ListGroup>
             {parasedHistory.map((historyItem, index) =>(
                 <ListGroup.Item key={index} onClick={(e)=>historyClicked(e, index)} className="historyListItem">
-                    {Object.keys(historyItem).map(key =>(<>{key}:<strong>{historyItem[key]}</strong>&nbsp;</>))}
+                    {Object.keys(historyItem).map((key) =>(<>{key}:<strong>{historyItem[key]}</strong>&nbsp;</>))}
                     <Button className="float-end" variant="danger" size="sm" onClick={e => removeHistoryClicked(e, index)}>&times;</Button> 
                 </ListGroup.Item>
             ))}
