@@ -15,7 +15,7 @@ export async function addToComparsion(id){
     const token = getToken();
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/comparsion/${id}`,
-        {method:'POST',
+        {method:'PUT',
             headers:{
                 'content-type': 'application/json',
                 'authorization': `JWT ${token}`,
@@ -81,7 +81,7 @@ export async function addToHistory(id){
     const token = getToken();
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/history/${id}`,
-        {method: 'POST',
+        {method: 'PUT',
             headers:{
                 'content-type': 'application/json',
                 'authorization': `JWT ${token}`
