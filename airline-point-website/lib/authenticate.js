@@ -71,7 +71,7 @@ export function isAuthenticated(){
 
 
 // Register a new user
-export async function registerUser(user, password, password2,email, nationality, mainAirport, preferenceCarrier, preferenceAlliance,){
+export async function registerUser(user, password, password2,email, nationality, mainAirport, preferenceCarrier, preferenceAlliance){
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/register`, {
         method: 'POST',
@@ -87,12 +87,12 @@ export async function registerUser(user, password, password2,email, nationality,
     if (res.status === 200) {
         return true;
       } else {
-        // 如果 data.message 是物件，就自己決定要如何處理
+        
         if (typeof data.message === 'object') {
-          // 例如把它轉成字串
+         
           throw new Error(JSON.stringify(data.message));
         } else {
-          // 如果是字串就直接拋出
+          
           throw new Error(data.message);
         }
       }

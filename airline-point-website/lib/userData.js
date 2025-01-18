@@ -14,7 +14,7 @@ export async function addToComparsion(id){
 
     const token = getToken();
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comparsion/${id}`,
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/comparsion/${id}`,
         {method:'POST',
             headers:{
                 'content-type': 'application/json',
@@ -36,7 +36,7 @@ export async function removeComparsion(id){
 
     const token = getToken();
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comparsion/${id}`,
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/comparsion/${id}`,
         {method: 'DELETE',
             headers:{
                 'content-type': 'application/json',
@@ -58,7 +58,7 @@ export async function getComparsion(){
 
     const token = getToken();
     
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comparsion`,
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/comparsion`,
         {method: 'GET',
             headers:{
                 'content-type': 'application/json',
@@ -80,7 +80,7 @@ export async function addToHistory(id){
 
     const token = getToken();
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/history/${id}`,
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/history/${id}`,
         {method: 'POST',
             headers:{
                 'content-type': 'application/json',
@@ -101,7 +101,7 @@ export async function removeFromHistory(id){
 
     const token = getToken();
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/history/${id}`,
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/history/${id}`,
         {method: 'DELETE',
             headers:{
                 'content-type': 'application/json',
@@ -124,7 +124,7 @@ export async function getHistory(){
 
     const token = getToken();
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/history`,
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/history`,
         {method: 'GET',
             headers:{
                 'content-type': 'application/json',

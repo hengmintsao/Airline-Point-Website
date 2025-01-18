@@ -27,7 +27,7 @@ export default function MainNav(){
                 <Nav.Link href="/">Home</Nav.Link>
                 <Link href="/about" passHref legacyBehavior><Nav.Link>About</Nav.Link></Link>
                 <Nav.Link href="/calculator">Airport Calculator</Nav.Link>
-                {token && <Link href="/costPerMile" passHref legacyBehavior> <Nav.Link href="/costPerMile">Mile cost Calculator</Nav.Link></Link>}
+                {token && <Link href="/costPerMile" passHref legacyBehavior><Nav.Link active={router.pathname === '/costPerMile'}>Mile cost Calculator</Nav.Link></Link>}
               </Nav>
               &nbsp;
               <Nav>
