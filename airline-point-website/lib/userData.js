@@ -98,16 +98,17 @@ export async function addToHistory(historyData){
 }
 
 // Remove an item to the history list
-export async function removeFromHistory(id){
+export async function removeFromHistory(historyData){
 
     const token = getToken();
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/history/${id}`,
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/history`,
         {method: 'DELETE',
             headers:{
                 'content-type': 'application/json',
                 'authorization': `JWT ${token}`,
-            }
+            },
+            body: JSON.stringify({ historyData }),
         }
     );
 
