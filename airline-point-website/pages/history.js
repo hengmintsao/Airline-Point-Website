@@ -39,7 +39,9 @@ export default function History(){
         //     x.splice(index, 1);
         //     return x;
         // });
-        setSearchHistory(await removeFromHistory(searchHistory[index]))
+        const itemToRemove = searchHistory[index];
+        const updatedHistory = await removeFromHistory(itemToRemove);
+        setSearchHistory(updatedHistory);
 
     }
 
@@ -58,7 +60,7 @@ export default function History(){
         
         <ListGroup>
             {parasedHistory.map((historyItem, index) =>(
-                <ListGroup.Item key={index} onClick={(e)=>historyClicked(e, index)} className="historyListItem">
+                <ListGroup.Item key={historyItem._id || `history-${index}`} onClick={(e)=>historyClicked(e, index)} className="historyListItem">
                     {Object.keys(historyItem).map((key) =>(<>{key}:<strong>{historyItem[key]}</strong>&nbsp;</>))}
                     <Button className="float-end" variant="danger" size="sm" onClick={e => removeHistoryClicked(e, index)}>&times;</Button> 
                 </ListGroup.Item>
