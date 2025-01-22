@@ -1,3 +1,5 @@
+
+
 .page {
   --gray-rgb: 0, 0, 0;
   --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
@@ -13,7 +15,7 @@
   min-height: 100svh;
   padding: 80px;
   gap: 64px;
-  font-family: var(--font-geist-sans);
+  font-family: 'ClashDisplay-Variable' sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -166,3 +168,4 @@ a.secondary {
     filter: invert();
   }
 }
+

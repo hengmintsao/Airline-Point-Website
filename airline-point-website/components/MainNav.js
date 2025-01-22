@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { readToken, removeToken } from "@/lib/authenticate";
+import '@/styles/clash-display.module.css';
+
 
 
 export default function MainNav(){
@@ -18,7 +20,7 @@ export default function MainNav(){
     }
 
     return (
-        <Navbar expand="lg" className="navbar bg-primary">
+        <Navbar expand="lg" className="navbar bg-white sticky-top" style={{ fontFamily: 'ClashDisplay-Variable, sans-serif' }}>
           <Container>
             <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setIsExpanded(!isExpanded)}/>
