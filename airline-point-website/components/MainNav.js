@@ -22,14 +22,14 @@ export default function MainNav(){
     return (
         <Navbar expand="lg" className="navbar bg-white sticky-top" style={{ fontFamily: 'ClashDisplay-Variable, sans-serif' }}>
           <Container>
-            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+            <Navbar.Brand href="#home">Airline-Point</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setIsExpanded(!isExpanded)}/>
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
                 <Nav.Link href="/">Home</Nav.Link>
                 <Link href="/about" passHref legacyBehavior><Nav.Link>About</Nav.Link></Link>
                 <Nav.Link href="/calculator">Airport Calculator</Nav.Link>
-                {token && <Link href="/costPerMile" passHref legacyBehavior><Nav.Link active={router.pathname === '/costPerMile'}>Mile cost Calculator</Nav.Link></Link>}
+                {token && <Link href="/costPerMile" passHref legacyBehavior><Nav.Link active={router.pathname === '/costPerMile'}>Mile Cost Calculator</Nav.Link></Link>}
               </Nav>
               &nbsp;
               <Nav>

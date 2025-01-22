@@ -87,6 +87,30 @@ export default function Home() {
           </Row>
         </Container>
       </section>
+      {/*Counter */}
+    <section id="counter" className="section-padding">
+      <div className="container text-center">
+        <div className="row g-4">
+          <div className="col-lg-3 col-sm-6">
+            <h1>9,000+</h1>
+            <h6>Airports</h6>
+          </div>
+          <div className="col-lg-3 col-sm-6">
+            <h1>4 Types</h1>
+            <h6>Earn points methods</h6>
+          </div>
+          <div className="col-lg-3 col-sm-6">
+            <h1>3 Alliances included</h1>
+            <h6>Analysis pros & cons</h6>
+          </div>
+          <div className="col-lg-3 col-sm-6">
+            <h1>Canada based</h1>
+            <h6>From the perspective of departing from Canada, looking at various airlines</h6>
+          </div>
+        </div>
+      </div>
+    </section>
+
       {/*About the features accomplish in this project */}
       <section id="features" className="section-padding">
         <div className="container">
@@ -158,29 +182,7 @@ export default function Home() {
             </div>
         </div>
     </section>
-    {/*Counter */}
-    <section id="counter" className="section-padding">
-      <div className="container text-center">
-        <div className="row g-4">
-          <div className="col-lg-3 col-sm-6">
-            <h1>9,000+</h1>
-            <h6>Airports</h6>
-          </div>
-          <div className="col-lg-3 col-sm-6">
-            <h1>4 Types</h1>
-            <h6>Earn points methods</h6>
-          </div>
-          <div className="col-lg-3 col-sm-6">
-            <h1>3 Alliances included</h1>
-            <h6>Analysis pros & cons</h6>
-          </div>
-          <div className="col-lg-3 col-sm-6">
-            <h1>Canada based</h1>
-            <h6>From the perspective of departing from Canada, looking at various airlines</h6>
-          </div>
-        </div>
-      </div>
-    </section>
+    
     </>
   );
 }
