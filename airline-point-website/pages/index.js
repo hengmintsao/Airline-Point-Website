@@ -1,7 +1,24 @@
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import Link from "next/link";
 
+
+
+
 export default function Home() {
+
+    useEffect(() => {
+      Aos.init({
+        duration: 800,
+        once: true,
+        
+      });
+      Aos.refresh();
+    }, []);
+
+
   return (
     <>
       {/* Hero Section */}
@@ -9,10 +26,10 @@ export default function Home() {
         <Container>
           <Row>
             <Col className="text-center">
-              <h1 className="text-uppercase fw-semibold display-1">
+              <h1 data-aos="fade-left" className="text-uppercase fw-semibold display-1">
                 Welcome to Airline-Point
               </h1>
-              <h5 className="mt-3">
+              <h5 className="mt-3" data-aos="fade-right">
                 THIS IS THE WEBSITE FOR AIRLINE POINT LOVERS!
               </h5>
             </Col>
@@ -115,7 +132,7 @@ export default function Home() {
       <section id="features" className="section-padding">
         <div className="container">
             <div className="row">
-                <div className="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
+                <div className="col-12 text-center">
                     <div className="section-title">
                         <h1 className="display-4 fw-semibold">Features Accomplishment</h1>
                         <div className="line"></div>
@@ -124,7 +141,7 @@ export default function Home() {
                 </div>
             </div>
             <div className="row g-4 text-center">
-                <div className="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="150">
+                <div className="col-lg-4 col-sm-6">
                     <div className="features theme-shadow p-lg-5 p-4">
                         <div className="iconbox">
                             <i className="ri-pen-nib-fill"></i>
@@ -134,7 +151,7 @@ export default function Home() {
                           then use formula to calculate the distance in miles between two airports. </p>
                     </div>
                 </div>
-                <div className="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="250">
+                <div className="col-lg-4 col-sm-6">
                     <div className="features theme-shadow p-lg-5 p-4">
                         <div className="iconbox">
                             <i className="ri-stack-fill"></i>
@@ -143,7 +160,7 @@ export default function Home() {
                         <p>Use third-party npm package for quickly and easily creating pie chart in React</p>
                     </div>
                 </div>
-                <div className="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="350">
+                <div className="col-lg-4 col-sm-6">
                     <div className="features theme-shadow p-lg-5 p-4">
                         <div className="iconbox">
                             <i className="ri-ruler-2-fill"></i>
@@ -152,7 +169,7 @@ export default function Home() {
                         <p>A Web API with authentication functionality is implemented to secure the API and ensure that only authorized users can access specific resources or perform operations. This is achieved using JSON Web Tokens (JWT) for stateless and secure authentication.</p>
                     </div>
                 </div>
-                <div className="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="450">
+                <div className="col-lg-4 col-sm-6">
                     <div className="features theme-shadow p-lg-5 p-4">
                         <div className="iconbox">
                             <i className="ri-pie-chart-2-fill"></i>
@@ -161,7 +178,7 @@ export default function Home() {
                         <p>Using atomic state management with Jotai simplifies the implementation and management of the comparison table's state. It eliminates the need for boilerplate code, making the development process more efficient and maintainable.</p>
                     </div>
                 </div>
-                <div className="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="550">
+                <div className="col-lg-4 col-sm-6">
                     <div className="features theme-shadow p-lg-5 p-4">
                         <div className="iconbox">
                             <i className="ri-code-box-line"></i>
@@ -170,7 +187,7 @@ export default function Home() {
                         <p>After inputting data and generating the pie chart, the entered data is stored in an array using Jotai, allowing users to quickly access previously entered records.</p>
                     </div>
                 </div>
-                <div className="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="650">
+                <div className="col-lg-4 col-sm-6">
                     <div className="features theme-shadow p-lg-5 p-4">
                         <div className="iconbox">
                             <i className="ri-user-2-fill"></i>
