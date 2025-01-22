@@ -45,11 +45,9 @@ a {
   }
 }
 
-#hero h1, #hero h5 {
-  font-family: 'ClashDisplay-Variable', sans-serif;
-  color: white;
-}
 
+
+/*Hero*/
 #hero{
   background:linear-gradient(rgba(0,0,0, 0.507), rgba(0,0,0,0.438)) ,url('/pics/airport.jpg');
   background-position: center;
@@ -64,6 +62,12 @@ a {
   color: #ffffff; /*White*/
   text-align: center;
   overflow: hidden;
+}
+
+/*Hero h1, h5*/
+#hero h1, #hero h5 {
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  color: white;
 }
 
 
@@ -84,6 +88,43 @@ a {
   border-color: rgb(122, 117, 117);
 }
 
+/*About-title*/
+#about{
+  width: 100vw;
+  margin: 0 auto;
+  padding: 40px 5%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 20px;
+}
+
+#about h1, #about h5{
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  margin: 0;
+}
+
+.about-title, .about-line {
+  flex: 1;
+}
+
+.about-photo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  
+}
+
+
+
+.about-photo img {
+  width: 100%; 
+  max-width: 400px;
+  height: auto; 
+  border-radius: 5px; 
+  
+}
+
 .navbar {
   background: transparent;
   position: absolute;
@@ -94,6 +135,88 @@ a {
   border: none;
 }
 
+/* Icon List */
+.icon-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.icon-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 0;
+}
+
+.icon-item .icon-container {
+  background: #ccc7c7; 
+  padding: 0; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px; 
+  height: 50px; 
+  border-radius: 10px; 
+}
+
+.icon-item .icon {
+  width: 30px; 
+  height: 30px;
+}
+
+.icon-item div {
+  flex: 1;
+}
+
+.icon-item h5 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.icon-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* .iconbox{
+  width: 60px;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+
+} */
+
+/* .iconbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px; 
+  
+  
+   
+}
+.about-line {
+  margin-top: 10px; 
+}
+
+.iconbox img {
+  width: 30px; 
+  height: 30px;
+  background: #9c9a9a;
+}
+
+.iconbox h5 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.iconbox p{
+  margin: 0;
+  font-size: 14px;
+} */
 /* @font-face {
   font-family: 'ClashDisplay-Variable';
   src: url('/fonts/ClashDisplay-Variable.woff2') format('woff2'),
