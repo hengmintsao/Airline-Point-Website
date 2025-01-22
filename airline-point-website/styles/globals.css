@@ -183,6 +183,14 @@ a {
   color: #555;
 }
 
+#counter{
+  background: linear-gradient(rgba(214, 212, 212, 0.507), rgba(214,212,212,0.438)), url('/pics/worldmap.jpg');
+  background-position: center;
+  background-size: cover;
+  padding: 100px 0;
+  
+}
+
 /* .iconbox{
   width: 60px;
   height: 60px;
