@@ -1,23 +1,8 @@
-import Aos from 'aos';
-import 'aos/dist/aos.css';
-import { useEffect } from 'react';
-import { Container, Row, Col, Button, Image } from "react-bootstrap";
-import Link from "next/link";
-
+import { Container, Row, Col, Image } from "react-bootstrap";
 
 
 
 export default function Home() {
-
-    useEffect(() => {
-      Aos.init({
-        duration: 800,
-        once: true,
-        
-      });
-      Aos.refresh();
-    }, []);
-
 
   return (
     <>

@@ -92,11 +92,11 @@ a {
 #about{
   width: 100vw;
   margin: 0 auto;
-  padding: 40px 5%;
+  padding: 60px 5%;
   display: flex;
   align-items: flex-start;
   flex-direction: row;
-  gap: 20px;
+  
 }
 
 #about h1, #about h5{
