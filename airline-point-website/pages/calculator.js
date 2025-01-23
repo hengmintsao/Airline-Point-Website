@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { Button, Form} from "react-bootstrap";
+import AutoComplete from "@/components/AutoComplete";
 
 /* =============================================================History==============================================================================
 1. Date: 2024-Dec-22 Description: Update calculator.js. Basic features, connect to API to get info, calculate miles by two airports. #TO-DO: Add swap button feature to origin and dest airport
 2. Date: 2024-Dec-23 Description: Swap feature complete. #TO-DO: UI, but currently no ideas at the moment
-
+3. Date: 2025-Jan-23 Description: CSS Added(Still working). #TO-DO: Might need AutoComplete here
 
 =====================================================================================================================================================
 */
@@ -49,7 +50,7 @@ export default function Calculator(){
           Math.cos(latitude1 * (Math.PI / 180)) * Math.cos(latitude2 * (Math.PI / 180)) * Math.cos(theta * (Math.PI / 180))
       );
     
-      return Math.round(distance * 100) / 100; 
+      return Math.round(distance); 
     
   };
 
@@ -106,8 +107,10 @@ export default function Calculator(){
 
     return (
         <>
+        <div className="calculator-form">
+        <h2 className="text-center">Airport Distance Calculator</h2>
         <Form onSubmit={handleSubmit(submitForm)}>
-            <Form.Group className="mb-3">
+            <Form.Group className="form-group">
             <Form.Label>Origin Airport:</Form.Label>
             <Form.Control type="text" placeholder="" {...register('origin', { required: true })} className={errors.origin ? "is-invalid" : ""} />
                 {errors.origin && <div className="invalid-feedback">This field is required</div>}
@@ -115,7 +118,7 @@ export default function Calculator(){
         <br />
         <Button variant="primary" onClick={handleSwap}>Swap</Button>
         <br />
-            <Form.Group className="mb-3">
+            <Form.Group className="form-group">
             <Form.Label>Destination Airport:</Form.Label>
             <Form.Control type="text" placeholder="" {...register('dest', {required:true})} className={errors.dest ? "is-invalid" : ""} />
                 {errors.dest && <div className="invalid-feedback">This field is required</div>}
@@ -135,6 +138,7 @@ export default function Calculator(){
               )}
             </div>
           )}
+          </div>
          </>
       );
   
