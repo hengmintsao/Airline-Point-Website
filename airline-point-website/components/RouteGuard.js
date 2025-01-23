@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { isAuthenticated } from "@/lib/authenticate";
 
 
-const PUBLIC_PATHS = ['/login', '/', '/_error', '/register'];
+const PUBLIC_PATHS = ['/login', '/', '/_error', '/register', '/about'];
 
 export default function RouteGuard(props){
 
