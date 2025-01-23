@@ -1,6 +1,14 @@
 import { Container, Row, Col, Image } from "react-bootstrap";
 
 
+/* =============================================================History==============================================================================
+1. Date: 2025-Jan-22 Description: Create Home page, all introduction and information(Using css) #TO-DO: Test
+
+
+
+=====================================================================================================================================================
+*/
+
 
 export default function Home() {
 

@@ -9,6 +9,7 @@ import { addToComparsion, removeComparsion } from "@/lib/userData";
 1. Date: 2025-Jan-07 Description: About.js can view card list, CardDetail basic feature complete. #TO-DO: The code needs to be concise. Remove any unnecessary or unused code during subsequent reviews
 2. Date: 2025-Jan-12 Description: Using Jotai to implement comparsion table(similar to shopping cart feature), add/delete in AirlineCardDetail.js and shown on comparsion.js. #TO-DO: might need to change required information.
 3. Date: 2025-Jan-17 Description: Change showAdded, update useEffect and import from userdata to fit features #TO-DO: might need to change required information.
+4. Date: 2025-Jan-22 Description: Add CSS feature. #TO-DO: Test 
 =====================================================================================================================================================
 */
 
@@ -73,9 +74,9 @@ export default function AirlineCardDetail({id}){
     }
 
     const { Name, Code, Alliance, Website, Image, Advantage, Disadvantage } = airline;
-
+    console.log("the pics is", Image);
     return (
-        <Card className="mb-3">
+        <Card className="airline-card-detail">
           <Card.Img
             variant="top"
             src={Image || "https://via.placeholder.com/375x375.png?text=No+Image+Available"}
