@@ -50,11 +50,11 @@ export default function History() {
         <ListGroup.Item
           key={historyItem._id || `history-${index}`}
           onClick={(e) => historyClicked(e, index)}
-          className="historyListItem"
+          className="history-list-item"
         >
           <div className="history-container">
             <span>
-              <strong>Airline:</strong> {historyItem.airline}
+            <strong>{index + 1}. Airline:</strong> {historyItem.airline}
             </span>
             {historyItem.history.map((item, idx) => (
               <div key={idx} className="history-details">
@@ -86,7 +86,7 @@ export default function History() {
               size="sm"
               onClick={(e) => removeHistoryClicked(e, index)}
             >
-              &times;
+              Delete this history
             </Button>
           </div>
         </ListGroup.Item>
