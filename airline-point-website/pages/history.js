@@ -5,7 +5,7 @@ import { removeFromHistory } from "@/lib/userData";
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-11 Description: history.js can allow users to keep track of previous searches and re-run/delete them if they want. #TO-DO: 
-2. Date: 2025-Jan-25 Description: Add CSS, show more elements(Haven't finish). #TO-DO: Complete CSS and the history page
+2. Date: 2025-Jan-25 Description: Add CSS, show more elements(Finish). #TO-DO: Test
 
 
 =====================================================================================================================================================
