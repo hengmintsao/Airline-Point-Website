@@ -74,14 +74,13 @@ export default function CostPerMiles() {
         */
     const chartData = [
       { title: "By flight", value: 0, color: "#FF0000" },
-      { title: "", value: 0, color: "#FF8000" },
+      { title: "By buying points", value: 0, color: "#FF8000" },
       { title: "By credit card program", value: 0, color: "#3333FF" },
       { title: "Others", value: 0, color: "#CC0066" },
     ];
 
     typeGroup.forEach((group) => {
       const type = data[`type_${group.id}`];
-
       const mileage = parseInt(data[`typeNumber_${group.id}`], 10 || 0);
 
       // By flight
@@ -114,11 +113,34 @@ export default function CostPerMiles() {
 
     let totalMileage = 0;
     let totalCost = 0;
+    const formattedHistory = [];
 
-    for (let group of typeGroup) {
-        totalMileage += parseInt(data[`typeNumber_${group.id}`] || 0, 10);
-        totalCost += parseFloat(data[`typeCost_${group.id}`] || 0);
-      }
+    const typeDescriptions = {
+        1: "By flight",
+        2: "By buying points",
+        3: "By credit card program",
+        4: "Others",
+      };
+
+      typeGroup.forEach((group) => {
+        const type = data[`type_${group.id}`];
+        const mileage = parseInt(data[`typeNumber_${group.id}`], 10) || 0;
+        const cost = parseFloat(data[`typeCost_${group.id}`]) || 0;
+        const description = data[`description_${group.id}`] || "None";
+  
+        totalMileage += mileage;
+        totalCost += cost;
+  
+        if (type && mileage > 0) {
+          formattedHistory.push({
+            type: typeDescriptions[type],
+            mileage,
+            cost,
+            description,
+            
+          });
+        }
+      });
   
       const costPerMile = totalMileage > 0 ? (totalCost / totalMileage).toFixed(2) : 0;
       setCostPerMile(costPerMile);
@@ -129,13 +151,15 @@ export default function CostPerMiles() {
     setPieChartData(chartData);
 
     try {
-      await addToHistory(data);
-      console.log("History successfully added");
+        const formattedData = { airline: data.airline, history: formattedHistory, totalMileage,  costPerMile};
+        await addToHistory(formattedData);
+        //console.log("History successfully added"); // test code
+        setSearchHistory((prev) => [...prev, formattedData]);
     } catch (error) {
-      console.error("Failed to add history:", error);
+        console.error("Failed to add history:", error);
     }
-
-    setSearchHistory(await addToHistory(data));
+    setSubmitted(true);
+    //setSearchHistory(await addToHistory(data));
 
     // setSearchHistory(current => {
     //     const newHistory = [...current, data];
@@ -143,7 +167,7 @@ export default function CostPerMiles() {
 
     //     return newHistory;
     //   });
-    setSubmitted(true);
+   
   }
 
   return (
@@ -173,22 +197,8 @@ export default function CostPerMiles() {
         </Form.Group>
         <br />
 
-        {/* 2. Enter mileage
-        <Form.Group className="mb-3">
-          <Form.Label>Please enter the mileages you required:</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder=""
-            {...register("mileage", { required: true })}
-            className={errors.mileage ? "is-invalid" : ""}
-          />
-          {errors.mileage && (
-            <div className="invalid-feedback">This field is required</div>
-          )}
-        </Form.Group>
-        <br /> */}
 
-        {/*3. Earn type */}
+        {/*2. Earn type */}
         {typeGroup.map((group) => {
           return (
             <Form.Group key={group.id} className="mb-3">
@@ -209,7 +219,7 @@ export default function CostPerMiles() {
               {errors[`type_${group.id}`] && (
                 <div className="invalid-feedback">This field is required</div>
               )}
-                
+            {/*3. Mileage */} 
               <Form.Control
                 type="number"
                 placeholder="Please enter the mileage you earn"
@@ -219,6 +229,7 @@ export default function CostPerMiles() {
                 <div className="invalid-feedback">Mileage is required</div>
               )}
               <br />
+              {/*4. Cost */} 
               <Form.Control
               type="number"
               placeholder="Please enter the cost"
@@ -231,7 +242,7 @@ export default function CostPerMiles() {
               <Form.Control
                 type="text"
                 placeholder="Description is optional"
-                {...register("description")}
+                {...register(`description_${group.id}`)}
               />
             </Form.Group>
           );
@@ -281,6 +292,7 @@ export default function CostPerMiles() {
           </div>
         </div>
       )}
+      
     </>
   );
 }
