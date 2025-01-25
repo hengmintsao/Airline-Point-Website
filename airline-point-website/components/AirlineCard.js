@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-07 Description: About.js can view card list, CardDetail basic feature complete. #TO-DO: The code needs to be concise. Remove any unnecessary or unused code during subsequent reviews
-
+2. Date: 2025-Jan-25 Description: Add CSS Design. #TO-DO: Test 
 
 
 =====================================================================================================================================================
@@ -41,9 +41,9 @@ export default function AirlineCard({airline}){
 
 return (
     <>
-    <Card className="mb-3" style={{ width: '18rem' }}>
+    <Card className="mb-3 airline-card">
     {/* Picture */}
-    <Card.Img variant="top" src={Image || "https://via.placeholder.com/375x375.png?text=[+Not+Available+]"} />
+    <Card.Img variant="top" className="airline-card-img" src={Image || "https://via.placeholder.com/375x375.png?text=[+Not+Available+]"} />
     <Card.Body>
     {/* Airline Name */}
     <Card.Title>{Name || "N/A"}</Card.Title>

@@ -5,7 +5,7 @@ import { Row, Col } from "react-bootstrap";
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-07 Description: About.js can view card list, CardDetail basic feature complete. #TO-DO: Add new functionality: Sort by different attributes(nationality, alliance, English proficiency etc) 
 2. Date: 2025-Jan-22 Description: Add CSS feature. #TO-DO: Test 
-
+3. Date: 2025-Jan-25 Description: Revise CSS design #TO-DO: Test 
 
 =====================================================================================================================================================
 */
@@ -38,7 +38,7 @@ export default function About(){
 
       return (
         <>
-        <section id="airlineAbout" className="d-flex align-items-center">
+        <section id="airlineAbout" className="align-items-center">
         <div>
           <h1>About Canadian Airlines</h1>
           <p>
@@ -48,7 +48,7 @@ export default function About(){
         
           <Row className="gy-4">
             {airlines.map((airline) => (
-              <Col lg={4} md={6} sm={12} key={airline._id}>
+              <Col xxl={3} xl={4} lg={4} md={6} sm={12} key={airline._id}>
                 <AirlineCard airline={airline} />
               </Col>
             ))}
