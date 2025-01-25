@@ -380,8 +380,10 @@ form .invalid-feedback {
 
 /* === Pie Chart Container === */
 .pie-chart-container {
+  position: relative;
   margin-top: 300px;
-  margin-bottom: 300px;
+  margin-bottom: 250px;
+  bottom: 0px;
   padding: 20px;
   text-align: center;
   margin: 50px auto;
@@ -408,4 +410,19 @@ form .invalid-feedback {
 .pie-chart-container .clicked-segment {
   transform: scale(1.1);
   transition: transform 0.2s ease;
+}
+
+.result-container {
+  bottom: 0px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 5px 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.result-container h4 {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
 }

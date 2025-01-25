@@ -10,7 +10,7 @@ import { addToHistory } from "@/lib/userData";
 1. Date: 2025-Jan-09 Description: Implement select airline, enter mileage, earn type(with "+" button to create new earn type) and find resource online to implement piechart. #TO-DO: add input cost for each earn type. 
 2. Date: 2025-Jan-11 Description: Basic history feature completed.   #TO-DO: only MileCostCalculator history completed, might consider others calculator?
 3. Date: 2025-Jan-17 Description: Add addToHistory, update submitform function   #TO-DO: Haven't test
-3. Date: 2025-Jan-24 Description: Update CSS for piechart   #TO-DO: Haven't test
+3. Date: 2025-Jan-24 Description: Update CSS for piechart, redesign costPerMile calculator   #TO-DO: Haven't test
 
 
 
@@ -35,6 +35,8 @@ export default function CostPerMiles() {
   const [pieChartData, setPieChartData] = useState([]); // set piechart data to an empty array
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [costPerMile, setCostPerMile] = useState(0);
+  const [totalMileage, setTotalMileage] = useState(0);
 
   useEffect(() => {
     async function fetchAirlines() {
@@ -108,7 +110,19 @@ export default function CostPerMiles() {
 
   async function submitForm() {
     const data = getValues();
-    console.log(data); //test code
+    //console.log(data); //test code
+
+    let totalMileage = 0;
+    let totalCost = 0;
+
+    for (let group of typeGroup) {
+        totalMileage += parseInt(data[`typeNumber_${group.id}`] || 0, 10);
+        totalCost += parseFloat(data[`typeCost_${group.id}`] || 0);
+      }
+  
+      const costPerMile = totalMileage > 0 ? (totalCost / totalMileage).toFixed(2) : 0;
+      setCostPerMile(costPerMile);
+      setTotalMileage(totalMileage);
 
     const chartData = calculatePieChartData(data);
     //console.log('PieChart Data:', chartData); //test code
@@ -159,7 +173,7 @@ export default function CostPerMiles() {
         </Form.Group>
         <br />
 
-        {/*2. Enter mileage */}
+        {/* 2. Enter mileage
         <Form.Group className="mb-3">
           <Form.Label>Please enter the mileages you required:</Form.Label>
           <Form.Control
@@ -172,7 +186,7 @@ export default function CostPerMiles() {
             <div className="invalid-feedback">This field is required</div>
           )}
         </Form.Group>
-        <br />
+        <br /> */}
 
         {/*3. Earn type */}
         {typeGroup.map((group) => {
@@ -191,10 +205,11 @@ export default function CostPerMiles() {
                 <option value="3">By credit card program</option>
                 <option value="4">Others</option>
               </select>
+              <br />
               {errors[`type_${group.id}`] && (
                 <div className="invalid-feedback">This field is required</div>
               )}
-
+                
               <Form.Control
                 type="number"
                 placeholder="Please enter the mileage you earn"
@@ -204,6 +219,15 @@ export default function CostPerMiles() {
                 <div className="invalid-feedback">Mileage is required</div>
               )}
               <br />
+              <Form.Control
+              type="number"
+              placeholder="Please enter the cost"
+              {...register(`typeCost_${group.id}`, { required: true })}
+            />
+            {errors[`typeCost_${group.id}`] && (
+              <div className="invalid-feedback">Cost is required</div>
+            )}
+              
               <Form.Control
                 type="text"
                 placeholder="Description is optional"
@@ -229,6 +253,7 @@ export default function CostPerMiles() {
       </Form>
       {/*submit pop-up information*/}
       {submitted && (
+        <div>
         <div className="pie-chart-container">
           <PieChart
             data={pieChartData}
@@ -249,6 +274,11 @@ export default function CostPerMiles() {
             })}
             labelPosition={60}
           />
+        </div>
+        <div className="result-container">
+            <h4>Total Miles: ${totalMileage}</h4>
+            <h4>Cost Per Mile: ${costPerMile}</h4>
+          </div>
         </div>
       )}
     </>
