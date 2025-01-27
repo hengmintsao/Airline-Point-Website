@@ -170,11 +170,6 @@ a {
 
 
 /*Icon size*/
-.icon-item .icon {
-  background: #e1cee6; 
-  width: 45px; 
-  height: 45px;
-}
 
 .icon-item div {
   flex: 1;
