@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { Button, Form} from "react-bootstrap";
+import { Button, Form, Image } from "react-bootstrap";
 import AutoComplete from "@/components/AutoComplete";
 
 /* =============================================================History==============================================================================
 1. Date: 2024-Dec-22 Description: Update calculator.js. Basic features, connect to API to get info, calculate miles by two airports. #TO-DO: Add swap button feature to origin and dest airport
 2. Date: 2024-Dec-23 Description: Swap feature complete. #TO-DO: UI, but currently no ideas at the moment
 3. Date: 2025-Jan-23 Description: CSS Added(Still working). #TO-DO: Might need AutoComplete here
+4. Date: 2025-Jan-27 Description: CSS Added. #TO-DO: Might need AutoComplete here
 
 =====================================================================================================================================================
 */
@@ -110,13 +111,18 @@ export default function Calculator(){
         <div className="calculator-form">
         <h2 className="text-center">Airport Distance Calculator</h2>
         <Form onSubmit={handleSubmit(submitForm)}>
+          <div className="form-row">
             <Form.Group className="form-group">
             <Form.Label>Origin Airport:</Form.Label>
             <Form.Control type="text" placeholder="" {...register('origin', { required: true })} className={errors.origin ? "is-invalid" : ""} />
                 {errors.origin && <div className="invalid-feedback">This field is required</div>}
             </Form.Group>
         <br />
-        <Button variant="primary" onClick={handleSwap}>Swap</Button>
+        <Image src="/pics/repeat-line.png"
+                      alt="repeat-line"
+                      className="swap-icon"
+                      onClick={handleSwap} />
+        {/* <Button variant="primary" onClick={handleSwap}>Swap</Button> */}
         <br />
             <Form.Group className="form-group">
             <Form.Label>Destination Airport:</Form.Label>
@@ -126,12 +132,13 @@ export default function Calculator(){
             </Form.Group>
         <br />
         <Button variant="primary" type="submit">Submit</Button>
+        </div>
     </Form>
         {/*submit pop-up information*/}
          {submitted && (
             <div style={{ marginTop: "20px" }}>
               {distance !== null && (
-                <h5>The distance between the two airports is: <strong>{distance}</strong> miles</h5>
+                <h5>The distance between the two airports is: {distance} miles</h5>
               )}
               {errorMessage && (
                 <h5 style={{ color: "red" }}>Error: {errorMessage}</h5>
