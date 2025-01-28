@@ -364,6 +364,7 @@ form {
   margin: 20px auto;
   max-width: 600px;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.24);
+  font-family: 'ClashDisplay-Variable', sans-serif;
 }
 
 form .mb-3 {
@@ -576,3 +577,23 @@ form .invalid-feedback {
   
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
 }
+
+/*----------------------------------------------------------Login----------------------------------------------------*/
+/* Login Form Container */
+.login-form {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+}
+
+/* Card Title */
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  
+}
+

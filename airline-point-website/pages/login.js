@@ -9,6 +9,7 @@ import { comparsionAtom, searchHistoryAtom } from "@/store";
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-14 Description: Create Login page, input user and password  #TO-DO: Test
+1. Date: 2025-Jan-28 Description: Update CSS(Complete)  #TO-DO: Test
 
 
 
@@ -51,9 +52,10 @@ export default function Login(props){
     return (
         <>
         {warning && (<><br /><Alert variant="danger">{warning}</Alert></>)}
-        <Card bg="light">
-        <Card.Body><h2>Login</h2>Enter your login information below:</Card.Body>
-      </Card>
+        <div className="login-form">
+        <h2 className="text-center">Login</h2>
+        <h5 className="text-center">Enter your login information below:</h5>
+      
       <br />
       <Form onSubmit={handleSubmit}>
         <Form.Group>
@@ -66,6 +68,7 @@ export default function Login(props){
         <br />
         <Button variant="primary" className="pull-right" type="submit">Login</Button>
       </Form>
+      </div>
         </>
     );
 }
