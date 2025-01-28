@@ -7,12 +7,10 @@ import AutoComplete from "@/components/AutoComplete";
 1. Date: 2024-Dec-22 Description: Update calculator.js. Basic features, connect to API to get info, calculate miles by two airports. #TO-DO: Add swap button feature to origin and dest airport
 2. Date: 2024-Dec-23 Description: Swap feature complete. #TO-DO: UI, but currently no ideas at the moment
 3. Date: 2025-Jan-23 Description: CSS Added(Still working). #TO-DO: Might need AutoComplete here
-4. Date: 2025-Jan-27 Description: CSS Added. #TO-DO: Might need AutoComplete here
+4. Date: 2025-Jan-28 Description: CSS Added, AutoComplete complete. #TO-DO:
 
 =====================================================================================================================================================
 */
-
-
 
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -21,10 +19,38 @@ const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
 export default function Calculator(){
 
-    const {register, handleSubmit, setValue, getValues, formState:{errors}} = useForm();
-    const [distance, setDistance] = useState(null);
-    const [errorMessage, setErrorMessage] = useState(null);
-    const [submitted, setSubmitted] = useState(false);
+  const {register, handleSubmit, setValue, getValues, formState:{errors}} = useForm();
+  const [distance, setDistance] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
+  const [airportOption, setAirportOption] = useState([]);
+  const [origin, setOrigin] = useState(null);
+  const [dest, setDest] = useState(null);
+
+  useEffect(() => {
+    async function fetchAirports() {
+      try {
+        const response = await fetch("/api/airport");
+        if (!response.ok) {
+          throw new Error("Failed to fetch airline data");
+        }
+        const data = await response.json();
+        if (!Array.isArray(data)) {
+          throw new Error("Invalid data format received");
+      }
+      const airports = data.map((airport) => airport.displayName || "Unknown Airport");
+        setAirportOption(airports);
+      } catch (err) {
+        setErrorMessage(err.message);
+        setAirportOption([]);
+      }
+    }
+
+    fetchAirports();
+  }, []);
+
+
+
 
     
     // Handle Swap
@@ -34,7 +60,8 @@ export default function Calculator(){
       
       setValue("origin", currentDest);
       setValue("dest", currentOrigin);
-      
+      setOrigin(currentDest);
+      setDest(currentOrigin);
     };
 
 
@@ -59,7 +86,17 @@ export default function Calculator(){
 
     async function submitForm(data){
 
-        const {origin, dest} = data;
+        let {origin, dest} = data;
+        console.log("Origin is: ", origin);
+        console.log("Dest is :", dest);
+        if (!origin || !dest) {
+          setErrorMessage("Please select both Origin and Destination airports.");
+          setSubmitted(true);
+          return;
+        }
+
+        let originShort = origin.slice(0, 3);
+        let destShort = dest.slice(0,3);
         setErrorMessage(null);
         setDistance(null);
         setSubmitted(false);
@@ -68,7 +105,7 @@ export default function Calculator(){
             
           // Origin 
             const originResponse = await fetch(
-              `${serverUrl}/api/user/calculator?iata=${origin}`,
+              `${serverUrl}/api/user/calculator?iata=${originShort}`,
               {
                 method: "GET",
               }
@@ -80,7 +117,7 @@ export default function Calculator(){
       
             // Destination
             const destResponse = await fetch(
-              `${serverUrl}/api/user/calculator?iata=${dest}`,
+              `${serverUrl}/api/user/calculator?iata=${destShort}`,
               {
                 method: "GET",
               }
@@ -110,11 +147,13 @@ export default function Calculator(){
         <>
         <div className="calculator-form">
         <h2 className="text-center">Airport Distance Calculator</h2>
+        <h5 className="text-center">Please enter airport iata code or airport name</h5>
         <Form onSubmit={handleSubmit(submitForm)}>
           <div className="form-row">
             <Form.Group className="form-group">
             <Form.Label>Origin Airport:</Form.Label>
-            <Form.Control type="text" placeholder="" {...register('origin', { required: true })} className={errors.origin ? "is-invalid" : ""} />
+            <AutoComplete type="text" id="origin" name="origin" value={getValues("origin")} options={Array.isArray(airportOption) ? airportOption : []} onChange={(value) => {
+             setValue("origin", value); setOrigin(value || ""); }}  />
                 {errors.origin && <div className="invalid-feedback">This field is required</div>}
             </Form.Group>
         <br />
@@ -126,7 +165,8 @@ export default function Calculator(){
         <br />
             <Form.Group className="form-group">
             <Form.Label>Destination Airport:</Form.Label>
-            <Form.Control type="text" placeholder="" {...register('dest', {required:true})} className={errors.dest ? "is-invalid" : ""} />
+            <AutoComplete type="text" id="dest" name="dest" value={getValues("dest")} options={Array.isArray(airportOption) ? airportOption : []} onChange={(value) => {
+              setValue("dest", value); setDest(value || ""); }}  />
                 {errors.dest && <div className="invalid-feedback">This field is required</div>}
                 
             </Form.Group>

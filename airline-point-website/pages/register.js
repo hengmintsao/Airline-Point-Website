@@ -45,7 +45,7 @@ export default function Register(){
                   throw new Error("Invalid data format received");
               }
               const countries = data.map((country) => country.name || "Unknown Country");
-                //console.log("Those datas are: ", countries); // test codes
+                console.log("Those datas are: ", countries); // test codes
                 setNationalityOption(countries);
 
             }catch(err){
@@ -59,7 +59,7 @@ export default function Register(){
         fetchAllNationalityDetails();
     },[]);
 
-
+    
     const router = useRouter();
 
 async function handleSubmit(e){
