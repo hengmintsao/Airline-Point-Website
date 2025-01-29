@@ -11,7 +11,7 @@ import { useState, useEffect, useRef } from "react";
 export default function AutoComplete({options = [], onChange, id, name, value}){
 
   const [inputValue, setInputValue] = useState(value || "");
-    const [showOptions, setShowOptions] = useState(true);
+    const [showOptions, setShowOptions] = useState(false);
     const [filteredOptions, setFilterOptions] = useState([]);
     const autoCompleteRef = useRef();
 
@@ -52,8 +52,19 @@ export default function AutoComplete({options = [], onChange, id, name, value}){
 
             setShowOptions(false);
         }
-
+        
     }
+
+    // Handle input focus
+  const handleFocus = () => {
+    if (inputValue.trim().length === 0) {
+      setFilterOptions(options); // Show all options if input is empty
+    }
+    setShowOptions(true); // Always show dropdown on focus
+  };
+    
+
+
     const handleSuggestionClick = (suggestions) => {
         //console.log("Selected suggestion:", suggestions);
         setInputValue(suggestions);
@@ -73,10 +84,10 @@ export default function AutoComplete({options = [], onChange, id, name, value}){
         value={inputValue}
         onChange={handleChange}
         /*onBlur={() => setTimeout(() => setShowOptions(false), 100)}*/ // Delay to allow option click
-        onFocus={() => setShowOptions(true)}
+        onFocus={handleFocus}
       />
       {showOptions && (
-        <ul style={{ position: "absolute", zIndex: 1050, background: "white", border: "1px solid #ccc", width: "100%"}}>
+        <ul style={{ position: "absolute", zIndex: 1050, background: "white", border: "1px solid #ccc", width: "100%", overflowY: "auto", maxHeight: "200px", listStyle: "none" }}> {/*overflowY: scroll bar */}
           {filteredOptions.map((option, index) => (
             <li
               key={index}

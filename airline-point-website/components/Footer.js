@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Image} from "react-bootstrap";
 import Link from "next/link";
 
 export default function Footer() {
@@ -10,14 +10,12 @@ export default function Footer() {
           <Row className="gy-5">
             {/* Logo and About */}
             <Col lg={3} sm={6}>
-              <Link href="/">
+              <h3>
                 Airline-Point
-              </Link>
+              </h3>
               <div className="line my-3"></div>
               <p>
-              In the aviation industry for 6.5 years, I still feel excited every time I board a plane. 
-              Flying carries the purpose of every individual. A plane is not just a mode of transportation; 
-              it also carries people's dreams and hopes. 
+              Airline-Point is a website designed to help users efficiently manage their points, making life easier!
               </p>
             </Col>
 
@@ -56,7 +54,7 @@ export default function Footer() {
                   <Link href="#">Features Accomplishment</Link>
                 </li>
                 <li>
-                  <Link href="#">Back to top</Link>
+                <Link href="#" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Back to top</Link>
                 </li>
               </ul>
             </Col>
@@ -68,16 +66,13 @@ export default function Footer() {
               <ul className="list-unstyled">
                 <li>Hengmin Tsao</li>
                 <li>Email:henrygood32@gmail.com</li>
-                <li>
-                  <Link href="http://www.example.com">www.example.com</Link>
-                </li>
               </ul>
               <div className="social-icons">
-                <Link href="#">
-                  <i className="ri-linkedin-fill">linkedin</i>
+                <Link href="https://www.linkedin.com/in/hengmin-tsao-3b3403239/">
+                <Image src="/pics/linkedin-box-fill.png" alt="linkedin" className="icon" /> 
                 </Link>
-                <Link href="#">
-                  <i className="ri-github-fill">Github</i>
+                <Link href="https://github.com/hengmintsao">
+                <Image src="/pics/github-fill.png" alt="github" className="icon" /> 
                 </Link>
               </div>
             </Col>

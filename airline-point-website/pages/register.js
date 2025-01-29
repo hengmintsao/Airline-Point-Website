@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-14 Description: Create Register page, basic implementation   #TO-DO: AutoComplete(Not yet finished, has errors)
-
+1. Date: 2025-Jan-28 Description: AutoComplete finished, Update CSS   #TO-DO: 
 
 
 =====================================================================================================================================================
@@ -78,9 +78,9 @@ async function handleSubmit(e){
 return(
     <>
     {warning && (<><br /><Alert variant="danger">{warning}</Alert></>)}
-      <Card bg="light">
-        <Card.Body><h2>Register</h2>Register for an account:</Card.Body>
-      </Card>
+    <div className="register-form">
+        <h2 className="text-center">Register</h2>
+        <h5 className="text-center">Enter information below:</h5>
       <br />
       <Form onSubmit={handleSubmit}>
         <Form.Group>
@@ -119,6 +119,7 @@ return(
         <br />
         <Button variant="primary" className="pull-right" type="submit">Register</Button>
       </Form>
+      </div>
     </>
     
 )
