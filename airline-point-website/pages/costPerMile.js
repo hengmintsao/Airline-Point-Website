@@ -10,7 +10,8 @@ import { addToHistory } from "@/lib/userData";
 1. Date: 2025-Jan-09 Description: Implement select airline, enter mileage, earn type(with "+" button to create new earn type) and find resource online to implement piechart. #TO-DO: add input cost for each earn type. 
 2. Date: 2025-Jan-11 Description: Basic history feature completed.   #TO-DO: only MileCostCalculator history completed, might consider others calculator?
 3. Date: 2025-Jan-17 Description: Add addToHistory, update submitform function   #TO-DO: Haven't test
-3. Date: 2025-Jan-24 Description: Update CSS for piechart, redesign costPerMile calculator   #TO-DO: Haven't test
+4. Date: 2025-Jan-24 Description: Update CSS for piechart, redesign costPerMile calculator   #TO-DO: Haven't test
+5. Date: 2025-Jan-24 Description: Update a function to check if history is exceed limit   #TO-DO: Haven't test
 
 
 
@@ -34,7 +35,6 @@ export default function CostPerMiles() {
   const [typeGroup, setTypeGroup] = useState([{ id: 1 }]); //set typeGroup into a array
   const [pieChartData, setPieChartData] = useState([]); // set piechart data to an empty array
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
   const [costPerMile, setCostPerMile] = useState(0);
   const [totalMileage, setTotalMileage] = useState(0);
 
@@ -111,6 +111,12 @@ export default function CostPerMiles() {
     const data = getValues();
     //console.log(data); //test code
 
+    if(searchHistory.length >= 20){
+      alert("You have reached the maximum limit of 20 history records. Please delete old records at 'Search History' to add new ones.");
+      return;
+    }
+
+
     let totalMileage = 0;
     let totalCost = 0;
     const formattedHistory = [];
@@ -172,6 +178,11 @@ export default function CostPerMiles() {
 
   return (
     <>
+    <div className="costPerMile-form">
+        <h2 className="text-center">Mile Cost Calculator</h2>
+        <h5 className="text-center">Please select airline, earn type, and input miles you need and the cost of the miles.</h5>
+        <h5 className="text-center">The calculation and pie chart will shown after click submit button</h5>
+        <h5 className="text-center">(You can store up to 20 searches in 'Search History')</h5>
       <Form onSubmit={handleSubmit(submitForm)}>
         {/*1. Select airline */}
         <Form.Group className="mb-3">
@@ -271,9 +282,6 @@ export default function CostPerMiles() {
             animate={true}
             animationDuration={1000}
             animationEasing="ease-out"
-            segmentsShift={(index) => (index === hoveredIndex ? 1.5 : 0)}
-            onMouseOver={(_, index) => setHoveredIndex(index)}
-            onMouseOut={() => setHoveredIndex(null)}
             onClick={(e, index) => console.log(`Clicked segment: ${index}`)}
             label={({ dataEntry }) =>
               `${dataEntry.value} (${Math.round(dataEntry.percentage)}%)`
@@ -292,7 +300,7 @@ export default function CostPerMiles() {
           </div>
         </div>
       )}
-      
+      </div>
     </>
   );
 }

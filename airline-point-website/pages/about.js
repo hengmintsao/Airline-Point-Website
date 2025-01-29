@@ -6,6 +6,7 @@ import { Row, Col } from "react-bootstrap";
 1. Date: 2025-Jan-07 Description: About.js can view card list, CardDetail basic feature complete. #TO-DO: Add new functionality: Sort by different attributes(nationality, alliance, English proficiency etc) 
 2. Date: 2025-Jan-22 Description: Add CSS feature. #TO-DO: Test 
 3. Date: 2025-Jan-25 Description: Revise CSS design #TO-DO: Test 
+4. Date: 2025-Jan-29 Description: Revise some contents #TO-DO: Test 
 
 =====================================================================================================================================================
 */
@@ -40,9 +41,9 @@ export default function About(){
         <>
         <section id="airlineAbout" className="align-items-center">
         <div>
-          <h1>About Canadian Airlines</h1>
+          <h1>About Airlines</h1>
           <p>
-            This page contains all Canadian airlines, their pros and cons, and other relevant information.
+            This page contains many airlines, their pros and cons, and other relevant information.
           </p>
         
         

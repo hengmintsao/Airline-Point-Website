@@ -27,8 +27,8 @@ export default function MainNav(){
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
                 <Nav.Link href="/">Home</Nav.Link>
-                <Link href="/about" passHref legacyBehavior><Nav.Link>About</Nav.Link></Link>
-                <Nav.Link href="/calculator">Airport Calculator</Nav.Link>
+                {token && <Link href="/about" passHref legacyBehavior><Nav.Link>Airlines</Nav.Link></Link>}
+                {token && <Nav.Link href="/calculator">Airport Calculator</Nav.Link>}
                 {token && <Link href="/costPerMile" passHref legacyBehavior><Nav.Link active={router.pathname === '/costPerMile'}>Mile Cost Calculator</Nav.Link></Link>}
               </Nav>
               &nbsp;

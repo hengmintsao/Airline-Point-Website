@@ -105,6 +105,7 @@ a {
   display: flex;
   align-items: flex-start;
   flex-direction: row;
+  background-color: #f8f9fa;
   
 }
 
@@ -198,6 +199,7 @@ a {
 
 #features{
   margin: 40px;
+  
 }
 
 /*----------------------------------------------------------About---------------------------------------------*/
@@ -207,6 +209,7 @@ a {
   background-color: #f8f9fa;
   width: 100%;
   padding: 60px 5%;
+  margin: 15px;
   font-family: 'ClashDisplay-Variable', sans-serif;
 }
 
@@ -354,7 +357,7 @@ a {
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  background-color: #f8f9fa;
   color: #faf9f9;
   margin: 0;
   padding: 0;
@@ -425,7 +428,7 @@ form .invalid-feedback {
   margin-top: 300px;
   margin-bottom: 250px;
   bottom: 0px;
-  padding: 20px;
+  padding: 50px;
   text-align: center;
   margin: 50px auto;
   max-width: 450px;
@@ -433,6 +436,7 @@ form .invalid-feedback {
   overflow: visible;
   margin-left: auto;
   margin-right: auto;
+  box-sizing: border-box;
 }
 
 .pie-chart-container svg {
@@ -468,6 +472,13 @@ form .invalid-feedback {
   color: #333;
 }
 
+#costPerMile-form{
+  font-family: 'ClashDisplay-Variable', sans-serif;
+}
+
+.costPerMile-form h2,  h5{
+  font-family: 'ClashDisplay-Variable', sans-serif;
+}
 /*----------------------------------------------------------History----------------------------------------------------*/
 .history-list {
   margin: 20px auto;
