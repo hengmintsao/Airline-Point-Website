@@ -31,7 +31,7 @@ export default function Register(){
     const [airportOption, setAirportOption] = useState([]);
     
 
-    // Has CORS errors
+    
     useEffect(() =>{
 
         async function fetchAllNationalityDetails(){
