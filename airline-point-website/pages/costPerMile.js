@@ -186,7 +186,7 @@ export default function CostPerMiles() {
       <Form onSubmit={handleSubmit(submitForm)} className="form-group">
         {/*1. Select airline */}
         <Form.Group className="form-group">
-          <Form.Label className="form-label">Please select your airline:</Form.Label>
+          <Form.Label className="form-label">*Please select your airline:</Form.Label>
           <select
             {...register("airline", { required: true })}
             className={`form-select ${errors.airline ? "is-invalid" : ""}`}
@@ -211,7 +211,7 @@ export default function CostPerMiles() {
         {typeGroup.map((group) => {
           return (
             <Form.Group key={group.id} className="form-group">
-              <Form.Label className="form-label">Please add your earn type:</Form.Label>
+              <Form.Label className="form-label">*Please select your earn type:</Form.Label>
               <select
                 {...register(`type_${group.id}`, { required: true })}
                 className={`form-select ${errors[`type_${group.id}`] ? "is-invalid" : ""}`}
@@ -229,7 +229,7 @@ export default function CostPerMiles() {
                 <div className="form-error">This field is required</div>
               )}
             {/*3. Mileage */} 
-            <Form.Label className="form-label">Please enter mileages:</Form.Label>
+            <Form.Label className="form-label">*Please enter mileages:</Form.Label>
               <Form.Control
                 type="number"
                 placeholder="Please enter the mileage you earn"
@@ -241,7 +241,7 @@ export default function CostPerMiles() {
               )}
               
               {/*4. Cost */} 
-              <Form.Label className="form-label">Please enter cost:</Form.Label>
+              <Form.Label className="form-label">*Please enter cost:</Form.Label>
               <Form.Control
               type="number"
               placeholder="Please enter the cost"

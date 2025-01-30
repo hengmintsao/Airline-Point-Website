@@ -22,7 +22,7 @@ export default function MainNav(){
     return (
         <Navbar expand="lg" className="navbar bg-white sticky-top" style={{ fontFamily: 'ClashDisplay-Variable, sans-serif' }}>
           <Container>
-            <Navbar.Brand href="#home">Airline-Point</Navbar.Brand>
+            <Navbar.Brand href="/">Airline-Point</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setIsExpanded(!isExpanded)}/>
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">

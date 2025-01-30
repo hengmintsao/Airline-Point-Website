@@ -151,7 +151,7 @@ export default function Calculator(){
         <Form onSubmit={handleSubmit(submitForm)}>
           <div className="form-row">
             <Form.Group className="form-group">
-            <Form.Label>Origin Airport:</Form.Label>
+            <Form.Label>*Origin Airport:</Form.Label>
             <AutoComplete type="text" id="origin" name="origin" value={getValues("origin")} options={Array.isArray(airportOption) ? airportOption : []} onChange={(value) => {
              setValue("origin", value); setOrigin(value || ""); }}  />
                 {errors.origin && <div className="invalid-feedback">This field is required</div>}
@@ -164,7 +164,7 @@ export default function Calculator(){
         {/* <Button variant="primary" onClick={handleSwap}>Swap</Button> */}
         <br />
             <Form.Group className="form-group">
-            <Form.Label>Destination Airport:</Form.Label>
+            <Form.Label>*Destination Airport:</Form.Label>
             <AutoComplete type="text" id="dest" name="dest" value={getValues("dest")} options={Array.isArray(airportOption) ? airportOption : []} onChange={(value) => {
               setValue("dest", value); setDest(value || ""); }}  />
                 {errors.dest && <div className="invalid-feedback">This field is required</div>}

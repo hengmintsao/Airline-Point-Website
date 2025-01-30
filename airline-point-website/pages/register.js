@@ -28,6 +28,7 @@ export default function Register(){
     const [preferenceAlliance, setPreferenceAlliance] = useState("");
     const [warning , setWarning] = useState("");
     const [nationalityOption, setNationalityOption] = useState([]);
+    const [airportOption, setAirportOption] = useState([]);
     
 
     // Has CORS errors
@@ -59,6 +60,29 @@ export default function Register(){
         fetchAllNationalityDetails();
     },[]);
 
+
+    useEffect(() => {
+      async function fetchAirports() {
+        try {
+          const response = await fetch("/api/airport");
+          if (!response.ok) {
+            throw new Error("Failed to fetch airline data");
+          }
+          const data = await response.json();
+          if (!Array.isArray(data)) {
+            throw new Error("Invalid data format received");
+        }
+        const airports = data.map((airport) => airport.displayName || "Unknown Airport");
+          setAirportOption(airports);
+        } catch (err) {
+          setWarning(err.message);
+          setAirportOption([]);
+        }
+      }
+  
+      fetchAirports();
+    }, []);
+
     
     const router = useRouter();
 
@@ -84,37 +108,38 @@ return(
       <br />
       <Form onSubmit={handleSubmit}>
         <Form.Group>
-          <Form.Label>User:</Form.Label><Form.Control type="text" id="userName" name="userName" onChange={e => setUser(e.target.value)}/>
+          <Form.Label>*User:</Form.Label><Form.Control type="text" id="userName" name="userName" onChange={e => setUser(e.target.value)}/>
         </Form.Group>
         <br />
         <Form.Group>
-          <Form.Label>Password:</Form.Label><Form.Control type="password" id="password" name="password" onChange={e => setPassword(e.target.value)}/>
+          <Form.Label>*Password:</Form.Label><Form.Control type="password" id="password" name="password" onChange={e => setPassword(e.target.value)}/>
         </Form.Group>
         <br />
         <Form.Group>
-          <Form.Label>Confirm Password:</Form.Label><Form.Control type="password" id="password2" name="password2" onChange={e => setPassword2(e.target.value)}/>
+          <Form.Label>*Confirm Password:</Form.Label><Form.Control type="password" id="password2" name="password2" onChange={e => setPassword2(e.target.value)}/>
         </Form.Group>
         <br />
         <Form.Group>
-          <Form.Label>Email:</Form.Label><Form.Control type="text" id="email" name="email" onChange={e => setEmail(e.target.value)}/>
+          <Form.Label>*Email:</Form.Label><Form.Control type="text" id="email" name="email" onChange={e => setEmail(e.target.value)}/>
         </Form.Group>
         <br/ >
         <Form.Group>
-          <Form.Label>Nationality:</Form.Label><AutoComplete id="nationality" name="nationality" options={Array.isArray(nationalityOption) ? nationalityOption : []} onChange={(value) => {
+          <Form.Label>*Nationality:</Form.Label><AutoComplete id="nationality" name="nationality" options={Array.isArray(nationalityOption) ? nationalityOption : []} onChange={(value) => {
         /*console.log("Selected nationality:", value);*/ setNationality(value || ""); /*console.log("Nationality options:", nationalityOption);*/}}  /> 
         </Form.Group>
         <br />
 
         <Form.Group>
-          <Form.Label>Main Airport:</Form.Label><Form.Control type="text" id="mainAirport" name="mainAirport" onChange={e => setMainAirport(e.target.value)}/>
+          <Form.Label>*Main Airport:</Form.Label><AutoComplete type="text" id="origin" name="origin" options={Array.isArray(airportOption) ? airportOption : []} onChange={(value) => {
+                        setMainAirport(value || ""); }}  />
         </Form.Group>
         <br />
         <Form.Group>
-          <Form.Label>Preference Carrier:</Form.Label><Form.Control type="text" id="preferenceCarrier" name="preferenceCarrier" onChange={e => setPreferenceCarrier(e.target.value)}/>
+          <Form.Label>Preference Carrier:</Form.Label><Form.Control type="text" id="preferenceCarrier" name="preferenceCarrier" placeholder="Optional" onChange={e => setPreferenceCarrier(e.target.value)}/>
         </Form.Group>
         <br />
         <Form.Group>
-          <Form.Label>Preference Alliance:</Form.Label><Form.Control type="text" id="preferenceAlliance" name="preferenceAlliance" onChange={e => setPreferenceAlliance(e.target.value)}/>
+          <Form.Label>Preference Alliance:</Form.Label><Form.Control type="text" id="preferenceAlliance" name="preferenceAlliance" placeholder="Optional" onChange={e => setPreferenceAlliance(e.target.value)}/>
         </Form.Group>
         <br />
         <Button variant="primary" className="pull-right" type="submit">Register</Button>
