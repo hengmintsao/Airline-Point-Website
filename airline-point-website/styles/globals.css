@@ -41,7 +41,7 @@ a {
 
 @media (prefers-color-scheme: dark) {
   html {
-    color-scheme: dark;
+    color-scheme: white;
   }
 }
 
@@ -355,6 +355,7 @@ a {
 
 /*----------------------------------------------------------CostPerMiles----------------------------------------------------*/
 
+/* === General Styles === */
 body {
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
@@ -364,28 +365,29 @@ body {
 }
 
 /* === Form Styles === */
-form {
+.cost-per-mile-form {
   background: #ffffff;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 20px;
+  padding: 50px;
   margin: 20px auto;
-  max-width: 600px;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.24);
+  max-width: 1000px;
+  align-items: center; 
+  justify-content: center;
   font-family: 'ClashDisplay-Variable', sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-form .mb-3 {
+.cost-per-mile-form .form-group {
   margin-bottom: 1rem;
 }
 
-form label {
-  font-weight: bold;
+.cost-per-mile-form .form-label {
   margin-bottom: 5px;
   display: block;
 }
 
-form select {
+.cost-per-mile-form .form-select {
   background-color: #ffffff;
   color: #000000;
   width: 100%;
@@ -395,42 +397,70 @@ form select {
   border-radius: 4px;
 }
 
-form select.is-invalid,
-form input.is-invalid {
+.cost-per-mile-form .form-select:focus {
+  outline: none;
+  border-color: #007bff; 
+  background-color: #ffffff;
+}
+
+.cost-per-mile-form .form-select.is-invalid,
+.cost-per-mile-form .form-input.is-invalid {
   border-color: #e74c3c;
 }
 
-form .invalid-feedback {
+.cost-per-mile-form .form-error {
   color: #e74c3c;
   font-size: 12px;
   margin-top: 5px;
 }
 
-.button-group {
+.cost-per-mile-form .form-input {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+/* === Button Group === */
+.cost-per-mile-form .button-group {
   display: flex;
-  align-items: center; 
-  gap: 5px; 
-  margin-top: 20px; 
+  align-items: center;
+  gap: 5px;
+  margin-top: 20px;
 }
 
-.button-group .btn-secondary {
-  padding: 6px 12px; 
+.cost-per-mile-form .btn-secondary {
+  padding: 6px 12px;
+  background-color: #007bff; 
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.button-group .btn-primary {
-  padding: 6px 12px; 
+.cost-per-mile-form .btn-secondary:hover {
+  background-color: #0056b3;
+  transform: scale(1.05); 
 }
 
+.cost-per-mile-form .btn-primary {
+  padding: 6px 12px;
+}
+
+/* === Result Section === */
+.result-section {
+  margin-top: 20px;
+}
 
 /* === Pie Chart Container === */
 .pie-chart-container {
   position: relative;
-  margin-top: 300px;
-  margin-bottom: 250px;
-  bottom: 0px;
+  margin-top: 30px;
   padding: 50px;
   text-align: center;
-  margin: 50px auto;
+  margin: 0 auto;
   max-width: 450px;
   min-height: 450px;
   overflow: visible;
@@ -446,19 +476,17 @@ form .invalid-feedback {
   margin: 0 auto;
 }
 
-/* === Hover and Interaction Effects for Pie Chart === */
 .pie-chart-container .hovered-segment {
-  filter: brightness(1.2);
+  filter: brightness(1.1);
   transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .pie-chart-container .clicked-segment {
-  transform: scale(1.1);
   transition: transform 0.2s ease;
 }
 
+/* === Result Container === */
 .result-container {
-  bottom: 0px;
   background: rgba(255, 255, 255, 0.8);
   padding: 5px 15px;
   border-radius: 8px;
@@ -470,14 +498,6 @@ form .invalid-feedback {
   margin: 5px 0;
   font-size: 14px;
   color: #333;
-}
-
-#costPerMile-form{
-  font-family: 'ClashDisplay-Variable', sans-serif;
-}
-
-.costPerMile-form h2,  h5{
-  font-family: 'ClashDisplay-Variable', sans-serif;
 }
 /*----------------------------------------------------------History----------------------------------------------------*/
 .history-list {

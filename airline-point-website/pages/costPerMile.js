@@ -11,7 +11,7 @@ import { addToHistory } from "@/lib/userData";
 2. Date: 2025-Jan-11 Description: Basic history feature completed.   #TO-DO: only MileCostCalculator history completed, might consider others calculator?
 3. Date: 2025-Jan-17 Description: Add addToHistory, update submitform function   #TO-DO: Haven't test
 4. Date: 2025-Jan-24 Description: Update CSS for piechart, redesign costPerMile calculator   #TO-DO: Haven't test
-5. Date: 2025-Jan-24 Description: Update a function to check if history is exceed limit   #TO-DO: Haven't test
+5. Date: 2025-Jan-29 Description: Update a function to check if history is exceed limit   #TO-DO: Haven't test
 
 
 
@@ -178,18 +178,18 @@ export default function CostPerMiles() {
 
   return (
     <>
-    <div className="costPerMile-form">
+    <div className="cost-per-mile-form">
         <h2 className="text-center">Mile Cost Calculator</h2>
         <h5 className="text-center">Please select airline, earn type, and input miles you need and the cost of the miles.</h5>
         <h5 className="text-center">The calculation and pie chart will shown after click submit button</h5>
         <h5 className="text-center">(You can store up to 20 searches in 'Search History')</h5>
-      <Form onSubmit={handleSubmit(submitForm)}>
+      <Form onSubmit={handleSubmit(submitForm)} className="form-group">
         {/*1. Select airline */}
-        <Form.Group className="mb-3">
-          <Form.Label>Please select your airline:</Form.Label>
+        <Form.Group className="form-group">
+          <Form.Label className="form-label">Please select your airline:</Form.Label>
           <select
             {...register("airline", { required: true })}
-            className={errors.airline ? "is-invalid" : ""}
+            className={`form-select ${errors.airline ? "is-invalid" : ""}`}
           >
             <option value="" defaultValue>
               Choose...
@@ -206,17 +206,15 @@ export default function CostPerMiles() {
             </div>
           )}
         </Form.Group>
-        <br />
-
 
         {/*2. Earn type */}
         {typeGroup.map((group) => {
           return (
-            <Form.Group key={group.id} className="mb-3">
-              <Form.Label>Please add your earn type:</Form.Label>
+            <Form.Group key={group.id} className="form-group">
+              <Form.Label className="form-label">Please add your earn type:</Form.Label>
               <select
                 {...register(`type_${group.id}`, { required: true })}
-                className={errors[`type_${group.id}`] ? "is-invalid" : ""}
+                className={`form-select ${errors[`type_${group.id}`] ? "is-invalid" : ""}`}
               >
                 <option value="" defaultValue>
                   Choose...
@@ -228,32 +226,37 @@ export default function CostPerMiles() {
               </select>
               <br />
               {errors[`type_${group.id}`] && (
-                <div className="invalid-feedback">This field is required</div>
+                <div className="form-error">This field is required</div>
               )}
             {/*3. Mileage */} 
+            <Form.Label className="form-label">Please enter mileages:</Form.Label>
               <Form.Control
                 type="number"
                 placeholder="Please enter the mileage you earn"
                 {...register(`typeNumber_${group.id}`, { required: true })}
+                className={`form-input ${errors[`typeNumber_${group.id}`] ? "is-invalid" : ""}`}
               />
               {errors[`typeNumber_${group.id}`] && (
-                <div className="invalid-feedback">Mileage is required</div>
+                <div className="form-error">Mileage is required</div>
               )}
-              <br />
+              
               {/*4. Cost */} 
+              <Form.Label className="form-label">Please enter cost:</Form.Label>
               <Form.Control
               type="number"
               placeholder="Please enter the cost"
               {...register(`typeCost_${group.id}`, { required: true })}
+              className={`form-input ${errors[`typeCost_${group.id}`] ? "is-invalid" : ""}`}
             />
             {errors[`typeCost_${group.id}`] && (
-              <div className="invalid-feedback">Cost is required</div>
+              <div div className="form-error">Cost is required</div>
             )}
-              
+              <Form.Label className="form-label">Please enter description:</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Description is optional"
                 {...register(`description_${group.id}`)}
+                className="form-input"
               />
             </Form.Group>
           );
@@ -262,20 +265,20 @@ export default function CostPerMiles() {
         <div className="button-group">
           <button
             type="button"
-            className="btn btn-secondary"
+            className="btn-secondary"
             onClick={addTypeGroup}
           >
             +
           </button>
 
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" className="btn-primary">
             Submit
           </Button>
         </div>
       </Form>
       {/*submit pop-up information*/}
       {submitted && (
-        <div>
+        <div className="result-section">
         <div className="pie-chart-container">
           <PieChart
             data={pieChartData}
