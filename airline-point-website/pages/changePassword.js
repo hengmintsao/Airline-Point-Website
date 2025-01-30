@@ -14,8 +14,9 @@ import { getToken } from "@/lib/authenticate";
 export default function ChangePassword() {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [password2, setPassword2] = useState("");
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
+  
 
   const token = getToken();
   const router = useRouter();
@@ -23,7 +24,11 @@ export default function ChangePassword() {
   async function handleSubmit(e) {
     e.preventDefault();
     setError(null);
-    setSuccess(null);
+
+    if (newPassword !== password2) {
+        setError("New password and confirm password do not match.");
+        return;
+      }
 
     try {
       const res = await fetch(
@@ -38,43 +43,55 @@ export default function ChangePassword() {
         }
       );
 
+
+
       if (!res.ok) {
         const errData = await res.json();
         throw new Error(errData.error || "Failed to update password");
       }
-
-      const msgData = await res.json();
-      setSuccess(msgData.message);
-      router.push("/profile.js")
+      alert('Password changed successfully.');
+      router.push("/profile")
     } catch (err) {
       setError(err.message);
     }
   }
 
   return (
-    <div className="changePasswordContainer">
+    <div className="change-password-container">
       <h3>Change Password</h3>
-      {error && <p className={styles.errorMessage}>Error: {error}</p>}
-      {success && <p className={styles.successMessage}>{success}</p>}
+      {error && <p className="errorMessage">Error: {error}</p>}
 
-      <Form onSubmit={handleSubmit} className={styles.form}>
-        <Form.Group className="mb-3" controlId="formOldPassword">
-          <Form.Label>Old Password</Form.Label>
+      <Form onSubmit={handleSubmit} className="change-password-container-form">
+        <Form.Group className="change-password-container-form-group">
+          <Form.Label className="change-password-container-form-label">Old Password</Form.Label>
           <Form.Control
             type="password"
             name="oldPassword"
             value={oldPassword}
+            className="change-password-container-form-control"
             onChange={(e) => setOldPassword(e.target.value)}
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formNewPassword">
-          <Form.Label>New Password</Form.Label>
+        <Form.Group className="change-password-container-form-group">
+          <Form.Label className="change-password-container-form-label">New Password</Form.Label>
           <Form.Control
             type="password"
             name="newPassword"
             value={newPassword}
+             className="change-password-container-form-control"
             onChange={(e) => setNewPassword(e.target.value)}
+          />
+        </Form.Group>
+
+        <Form.Group className="change-password-container-form-group">
+          <Form.Label className="change-password-container-form-label">Confirm Password</Form.Label>
+          <Form.Control
+            type="password"
+            name="newPassword2"
+            value={password2}
+             className="change-password-container-form-control"
+            onChange={(e) => setPassword2(e.target.value)}
           />
         </Form.Group>
 

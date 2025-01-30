@@ -90,21 +90,19 @@ export default function EditProfile() {
 
       const updatedUser = await response.json();
       console.log("Updated user:", updatedUser);
+      alert('Profile changed successfully.');
       router.push("/profile");
     } catch (err) {
       setError(err.message);
     }
   }
 
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
 
   return (
     <div className="edit-profile-container">
       <Form onSubmit={handleSubmit} className="edit-profile-form">
         <h3 className="edit-profile-title">Edit Profile</h3>
-
+        {error && <p className="errorMessage">Error: {error}</p>}
         <div className="edit-profile-row">
           <h5>User: {formData.user} (Unable to change)</h5>
         </div>
@@ -116,7 +114,7 @@ export default function EditProfile() {
         </div>
 
        <Form.Group className="edit-profile-group">
-          <Form.Label className="edit-profile-label">Email</Form.Label>
+          <Form.Label className="edit-profile-label">*Email</Form.Label>
           <Form.Control
             type="email"
             name="email"
@@ -127,7 +125,7 @@ export default function EditProfile() {
         </Form.Group>
 
         <Form.Group className="edit-profile-group">
-          <Form.Label className="edit-profile-label">Nationality</Form.Label>
+          <Form.Label className="edit-profile-label">*Nationality</Form.Label>
           <Form.Control
             type="text"
             name="nationality"
@@ -138,7 +136,7 @@ export default function EditProfile() {
         </Form.Group>
 
         <Form.Group className="edit-profile-group">
-          <Form.Label className="edit-profile-label">Main Airport</Form.Label>
+          <Form.Label className="edit-profile-label">*Main Airport</Form.Label>
           <Form.Control
             type="text"
             name="mainAirport"
