@@ -9,7 +9,8 @@ import { comparsionAtom, searchHistoryAtom } from "@/store";
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-14 Description: Create Login page, input user and password  #TO-DO: Test
-1. Date: 2025-Jan-28 Description: Update CSS(Complete)  #TO-DO: Test
+2. Date: 2025-Jan-28 Description: Update CSS(Complete)  #TO-DO: Test
+3. Date: 2025-Jan-29 Description: Revise required * symbols  #TO-DO: Test
 
 
 
@@ -59,11 +60,11 @@ export default function Login(props){
       <br />
       <Form onSubmit={handleSubmit}>
         <Form.Group>
-        <Form.Label>User:</Form.Label><Form.Control type="text" id="userName" name="userName" onChange={e => setUser(e.target.value)}/>
+        <Form.Label>*User:</Form.Label><Form.Control type="text" id="userName" name="userName" onChange={e => setUser(e.target.value)}/>
         </Form.Group>
         <br />
         <Form.Group>
-        <Form.Label>Password:</Form.Label><Form.Control type="password" id="password" name="password" onChange={e => setPassword(e.target.value)}/>
+        <Form.Label>*Password:</Form.Label><Form.Control type="password" id="password" name="password" onChange={e => setPassword(e.target.value)}/>
         </Form.Group>
         <br />
         <Button variant="primary" className="pull-right" type="submit">Login</Button>

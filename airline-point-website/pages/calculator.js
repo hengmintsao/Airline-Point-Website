@@ -8,6 +8,7 @@ import AutoComplete from "@/components/AutoComplete";
 2. Date: 2024-Dec-23 Description: Swap feature complete. #TO-DO: UI, but currently no ideas at the moment
 3. Date: 2025-Jan-23 Description: CSS Added(Still working). #TO-DO: Might need AutoComplete here
 4. Date: 2025-Jan-28 Description: CSS Added, AutoComplete complete. #TO-DO:
+5. Date: 2025-Jan-29 Description: Revise required * symbols  #TO-DO: Test
 
 =====================================================================================================================================================
 */

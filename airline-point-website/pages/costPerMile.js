@@ -11,7 +11,7 @@ import { addToHistory } from "@/lib/userData";
 2. Date: 2025-Jan-11 Description: Basic history feature completed.   #TO-DO: only MileCostCalculator history completed, might consider others calculator?
 3. Date: 2025-Jan-17 Description: Add addToHistory, update submitform function   #TO-DO: Haven't test
 4. Date: 2025-Jan-24 Description: Update CSS for piechart, redesign costPerMile calculator   #TO-DO: Haven't test
-5. Date: 2025-Jan-29 Description: Update a function to check if history is exceed limit   #TO-DO: Haven't test
+5. Date: 2025-Jan-29 Description: Update a function to check if history is exceed limit, add required * symbols   #TO-DO: Haven't test
 
 
 

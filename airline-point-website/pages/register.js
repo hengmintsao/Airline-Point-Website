@@ -7,7 +7,8 @@ import { useState, useEffect } from "react";
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-14 Description: Create Register page, basic implementation   #TO-DO: AutoComplete(Not yet finished, has errors)
-1. Date: 2025-Jan-28 Description: AutoComplete finished, Update CSS   #TO-DO: 
+2. Date: 2025-Jan-28 Description: AutoComplete finished, Update CSS   #TO-DO: 
+3. Date: 2025-Jan-29 Description: Revise required * symbols  #TO-DO: Test
 
 
 =====================================================================================================================================================
