@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "aos": "^3.0.0-beta.6",
@@ -24,7 +25,9 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "cypress": "^14.0.1",
     "eslint": "^9",
-    "eslint-config-next": "15.1.2"
+    "eslint-config-next": "15.1.2",
+    "jest": "^29.7.0"
   }
 }

@@ -33,9 +33,14 @@ export default function RouteGuard(props){
     }
 
     useEffect(() =>{
-        updateAtoms();
 
         authCheck(router.pathname);
+
+        if (isAuthenticated()) {
+            updateAtoms();
+          }
+
+        
         router.events.on('routeChangeComplete', authCheck);
 
         return () =>{

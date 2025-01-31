@@ -2,6 +2,7 @@ import { useAtom } from "jotai";
 import { searchHistoryAtom } from "@/store";
 import { Card, ListGroup, Button } from "react-bootstrap";
 import { removeFromHistory } from "@/lib/userData";
+import { readToken } from "@/lib/authenticate";
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-11 Description: history.js can allow users to keep track of previous searches and re-run/delete them if they want. #TO-DO: 
@@ -12,7 +13,19 @@ import { removeFromHistory } from "@/lib/userData";
 */
 
 export default function History() {
+
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
+  const token = readToken();
+
+  if (!token) {
+    return (
+      <Card>
+        <h4>Please Log In</h4>
+        <p>Login to access your search history.</p>
+      </Card>
+    );
+  }
+
   if (!searchHistory) return null;
 
   let parasedHistory = [];
