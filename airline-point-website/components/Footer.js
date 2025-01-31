@@ -25,7 +25,7 @@ export default function Footer() {
               <div className="line my-3"></div>
               <ul className="list-unstyled">
                 <li>
-                  <Link href="/about">Airline introduction</Link>
+                  <Link href="/about">Airline introduction(Login Required)</Link>
                 </li>
                 <li>
                   <Link href="/calculator" passHref legacyBehavior>Airport Calculator(Login Required)</Link>
@@ -48,13 +48,7 @@ export default function Footer() {
               <div className="line my-3"></div>
               <ul className="list-unstyled">
                 <li>
-                  <Link href="#">About Author</Link>
-                </li>
-                <li>
-                  <Link href="#">Features Accomplishment</Link>
-                </li>
-                <li>
-                <Link href="#" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Back to top</Link>
+                  <Link href="/">Home</Link>
                 </li>
               </ul>
             </Col>
