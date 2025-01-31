@@ -39,6 +39,12 @@ export default function Login(props){
     // Function to handle after submit, authenticate user, fetch and push to comparsion page
     async function handleSubmit(e){
         e.preventDefault();
+
+        if (!user || !password) {
+            setWarning('Both username and password are required.');
+            return;
+          }
+          
         try{
             await authenticateUser(user, password); // Authenticates user
             await updateAtoms(); 

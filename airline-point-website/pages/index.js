@@ -176,7 +176,7 @@ export default function Home() {
                         <div className="iconbox">
                             <i className="ri-code-box-line"></i>
                         </div>
-                        <h5 className="mt-4 mb-3">Search History</h5>
+                        <h5 className="mt-4 mb-3">Search History Table</h5>
                         <p>After inputting data and generating the pie chart, the entered data is stored in an array using Jotai, allowing users to quickly access previously entered records.</p>
                     </div>
                 </div>

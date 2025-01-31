@@ -1,7 +1,11 @@
 import { Container, Row, Col, Image} from "react-bootstrap";
 import Link from "next/link";
+import { readToken } from "@/lib/authenticate";
 
 export default function Footer() {
+  
+  const token = readToken();
+
   return  (
     <footer className="bg-dark text-white">
       {/* Footer Top Section */}
@@ -21,9 +25,9 @@ export default function Footer() {
 
             {/* Services Section */}
             <Col lg={3} sm={6}>
-              <h5 className="mb-0">SERVICES</h5>
+              <h5 className="mb-0">SERVICES(Login Required)</h5>
               <div className="line my-3"></div>
-              <ul className="list-unstyled">
+              {token && <ul className="list-unstyled">
                 <li>
                   <Link href="/about">Airline introduction(Login Required)</Link>
                 </li>
@@ -39,7 +43,7 @@ export default function Footer() {
                 <li>
                   <Link href="/history" passHref legacyBehavior>History(Login Required)</Link>
                 </li>
-              </ul>
+              </ul>}
             </Col>
 
             {/* About Section */}
