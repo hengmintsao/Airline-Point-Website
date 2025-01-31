@@ -23,7 +23,7 @@ const airlineSchema = new mongoose.Schema({
     Image: String,
 });
 
-const Airline = mongoose.models.Airline || mongoose.model("Airline", airlineSchema);
+const Airline = mongoose.models.Airline || mongoose.model("Airline", airlineSchema, "airline");
 
 export default async function handler(req,res){
 

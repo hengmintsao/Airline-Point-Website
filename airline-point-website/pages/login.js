@@ -42,7 +42,7 @@ export default function Login(props){
         try{
             await authenticateUser(user, password); // Authenticates user
             await updateAtoms(); 
-            router.push('/comparsion');
+            router.push('/');
         }catch(err){
             setWarning(err.message);
         }
