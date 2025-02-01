@@ -61,6 +61,10 @@ describe('MainNav and Airlines Page', () => {
           
           // Test View details button
           cy.contains('View Details').click();
+          cy.contains('+ Compare').click();
+          cy.contains('+ Comparsion (added)').should('be.visible');
+          cy.contains('+ Comparsion (added)').click();
+          cy.contains('+ Compare').should('be.visible');
         });
       });
     });
