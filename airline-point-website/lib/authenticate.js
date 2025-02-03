@@ -98,3 +98,20 @@ export async function registerUser(user, password, password2,email, nationality,
       }
 
 }
+
+export async function contactMe(firstname, lastname, email, phone, description){
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/contact`,{
+        method: 'POST',
+        body: JSON.stringify({firstname, lastname, email, phone, description}),
+        headers:{
+            'Content-type':'application/json',
+        },
+    });
+
+    const data = await res.json();
+    if (res.status === 200) {
+        return true;
+      }else {
+          throw new Error(data.message);
+      }
+}

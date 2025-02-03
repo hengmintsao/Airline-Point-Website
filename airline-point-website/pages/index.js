@@ -1,4 +1,7 @@
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { useState } from "react";
+import { Container, Row, Col, Image, Form, Button } from "react-bootstrap";
+import { contactMe } from "@/lib/authenticate";
+
 
 
 /* =============================================================History==============================================================================
@@ -11,6 +14,26 @@ import { Container, Row, Col, Image } from "react-bootstrap";
 
 
 export default function Home() {
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [description, setDescription] = useState("");
+
+  async function handleSubmit(e){
+      e.preventDefault();
+      console.log("Submitting with nationality:", nationality);
+      try{
+          await contactMe(firstName, lastName, email, phone, description);
+          
+  
+      }catch(err){
+          setWarning(err.message);
+      }
+    }
+
+    
 
   return (
     <>
@@ -67,7 +90,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h5>Airports distance calculator</h5>
-                    <p>Calculate the distance between airports to see how many miles you can earn!</p>
+                    <p>Calculate the distance between airports to see how many miles you can earn</p>
                   </div>
                 </div>
                 <div className="icon-item">
@@ -128,70 +151,35 @@ export default function Home() {
             <div className="row">
                 <div className="col-12 text-center">
                     <div className="section-title">
-                        <h1 className="display-4 fw-semibold">Features Accomplishment</h1>
-                        <div className="line"></div>
-                        <p>Easy to use those features!</p>
-                    </div>
-                </div>
-            </div>
-            <div className="row g-4 text-center">
-                <div className="col-lg-4 col-sm-6">
-                    <div className="features theme-shadow p-lg-5 p-4">
-                        <div className="iconbox">
-                            <i className="ri-pen-nib-fill"></i>
-                        </div>
-                        <h5 className="mt-4 mb-3">Airport Distance Calculator</h5>
-                        <p>Use API to retrieve airport-related information (latitude and longitude), 
-                          then use formula to calculate the distance in miles between two airports. </p>
-                    </div>
-                </div>
-                <div className="col-lg-4 col-sm-6">
-                    <div className="features theme-shadow p-lg-5 p-4">
-                        <div className="iconbox">
-                            <i className="ri-stack-fill"></i>
-                        </div>
-                        <h5 className="mt-4 mb-3">Pie Chart</h5>
-                        <p>Use third-party npm package for quickly and easily creating pie chart in React</p>
-                    </div>
-                </div>
-                <div className="col-lg-4 col-sm-6">
-                    <div className="features theme-shadow p-lg-5 p-4">
-                        <div className="iconbox">
-                            <i className="ri-ruler-2-fill"></i>
-                        </div>
-                        <h5 className="mt-4 mb-3">Web API with authentication</h5>
-                        <p>A Web API with authentication functionality is implemented to secure the API and ensure that only authorized users can access specific resources or perform operations. This is achieved using JSON Web Tokens (JWT) for stateless and secure authentication.</p>
-                    </div>
-                </div>
-                <div className="col-lg-4 col-sm-6">
-                    <div className="features theme-shadow p-lg-5 p-4">
-                        <div className="iconbox">
-                            <i className="ri-pie-chart-2-fill"></i>
-                        </div>
-                        <h5 className="mt-4 mb-3">Comparison Table</h5>
-                        <p>Using atomic state management with Jotai simplifies the implementation and management of the comparison table's state. It eliminates the need for boilerplate code, making the development process more efficient and maintainable.</p>
-                    </div>
-                </div>
-                <div className="col-lg-4 col-sm-6">
-                    <div className="features theme-shadow p-lg-5 p-4">
-                        <div className="iconbox">
-                            <i className="ri-code-box-line"></i>
-                        </div>
-                        <h5 className="mt-4 mb-3">Search History Table</h5>
-                        <p>After inputting data and generating the pie chart, the entered data is stored in an array using Jotai, allowing users to quickly access previously entered records.</p>
-                    </div>
-                </div>
-                <div className="col-lg-4 col-sm-6">
-                    <div className="features theme-shadow p-lg-5 p-4">
-                        <div className="iconbox">
-                            <i className="ri-user-2-fill"></i>
-                        </div>
-                        <h5 className="mt-4 mb-3">AutoComplete</h5>
-                        <p>After retrieving all data via the API, a designed AutoComplete dropdown dynamically displays matching options in real-time. Users can enter keywords or directly click on suggested information to quickly select the desired item, improving input efficiency and reducing errors.</p>
+                        <h1 className="display-4 fw-semibold">Contact me</h1>
                     </div>
                 </div>
             </div>
         </div>
+        <Form className="contact-form" onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>First Name</Form.Label>
+            <Form.Control type="text" id="firstname" name="firstname" onChange={e => setFirstName(e.target.value)}></Form.Control>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control type="text" id="lastname" name="lastname" onChange={e => setLastName(e.target.value)}></Form.Control>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="text" id="email" name="email" onChange={e => setEmail(e.target.value)}></Form.Control>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Phone</Form.Label>
+            <Form.Control type="number" id="phone" name="phone" onChange={e => setPhone(e.target.value)}></Form.Control>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Description</Form.Label>
+            <Form.Control type="text" id="description" name="description" onChange={e => setDescription(e.target.value)}></Form.Control>
+          </Form.Group>
+          <br />
+          <Button variant="primary" className="pull-right" type="submit">Submit</Button>
+        </Form>
     </section>
     
     </>
