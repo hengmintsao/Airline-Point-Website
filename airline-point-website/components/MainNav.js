@@ -35,6 +35,7 @@ export default function MainNav(){
               <Nav>
                 {token ? (
                   <NavDropdown title={token.userName || "User Name"} id="basic-nav-dropdown">
+                <Link href="/profile" passHref legacyBehavior><NavDropdown.Item onClick={() => setIsExpanded(false)}>View Profile</NavDropdown.Item></Link>
                 <Link href="/comparsion" passHref legacyBehavior><NavDropdown.Item onClick={() => setIsExpanded(false)}>Comparsion</NavDropdown.Item></Link>
                 <Link href="/history" passHref legacyBehavior><NavDropdown.Item active={router.pathname === '/history'} onClick={() => setIsExpanded(false)}>Search History</NavDropdown.Item></Link>
                   <NavDropdown.Divider />

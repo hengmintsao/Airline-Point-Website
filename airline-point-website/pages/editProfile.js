@@ -109,7 +109,7 @@ export default function EditProfile() {
         <div className="edit-profile-row">
           <h5>Password: </h5>
           <Button className="edit-button" href="/changePassword">
-            Click
+            Click to change
           </Button>
         </div>
 

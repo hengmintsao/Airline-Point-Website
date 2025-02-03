@@ -37,7 +37,7 @@ export default function Home() {
           <Row>
             {/* Text and icons */}
             <Col md={6} className="about-text">
-              <h1>About Author</h1>
+              <h1>About the website</h1>
               <p>
                 Experienced in aviation field, from service to revenue management
               </p>
@@ -53,21 +53,8 @@ export default function Home() {
                     />
                   </div>
                   <div>
-                    <h5>6-year experience in aviation industry</h5>
-                    <p>From ground staff, sales to revenue management</p>
-                  </div>
-                </div>
-                <div className="icon-item">
-                  <div className="icon-container">
-                    <Image
-                      src="/pics/pie-chart-line.png"
-                      alt="pie-chart"
-                      className="icon"
-                    />
-                  </div>
-                  <div>
-                    <h5>Point analysis</h5>
-                    <p>Spend less money, earn more points!</p>
+                    <h5>Airline introduction</h5>
+                    <p>Contain an overview of major North American airlines</p>
                   </div>
                 </div>
                 <div className="icon-item">
@@ -80,17 +67,31 @@ export default function Home() {
                   </div>
                   <div>
                     <h5>Airports distance calculator</h5>
-                    <p>Easy to use!</p>
+                    <p>Calculate the distance between airports to see how many miles you can earn!</p>
                   </div>
                 </div>
+                <div className="icon-item">
+                  <div className="icon-container">
+                    <Image
+                      src="/pics/pie-chart-line.png"
+                      alt="pie-chart"
+                      className="icon"
+                    />
+                  </div>
+                  <div>
+                    <h5>Point analysis</h5>
+                    <p>Quickly compute the cost per mile, then viewing the results along with a pie chart</p>
+                  </div>
+                </div>
+
               </div>
             </Col>
 
             {/* Image */}
             <Col md={6} className="about-photo">
               <Image
-                src="/pics/aboutMe.jpg"
-                alt="About Author"
+                src="/pics/airlineAnalysis.jpg"
+                alt="About Website"
                 className="author-photo"
               />
             </Col>
@@ -110,7 +111,7 @@ export default function Home() {
             <h6>Earn points methods</h6>
           </div>
           <div className="col-lg-3 col-sm-6">
-            <h1>3 Alliances included</h1>
+            <h1>3 Airline Alliances</h1>
             <h6>Analysis pros & cons</h6>
           </div>
           <div className="col-lg-3 col-sm-6">
