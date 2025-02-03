@@ -1,8 +1,6 @@
-import { useState } from "react";
-import { Container, Row, Col, Image, Form, Button } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { Container, Row, Col, Image, Form } from "react-bootstrap";
 import { contactMe } from "@/lib/authenticate";
-
-
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-22 Description: Create Home page, all introduction and information(Using css) #TO-DO: Test
@@ -12,28 +10,36 @@ import { contactMe } from "@/lib/authenticate";
 =====================================================================================================================================================
 */
 
-
 export default function Home() {
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [description, setDescription] = useState("");
+  const [warning, setWarning] = useState("");
 
-  async function handleSubmit(e){
-      e.preventDefault();
-      console.log("Submitting with nationality:", nationality);
-      try{
-          await contactMe(firstName, lastName, email, phone, description);
-          
-  
-      }catch(err){
-          setWarning(err.message);
-      }
+  useEffect(() => {
+    if (warning) {
+      alert(warning);
+    }
+  }, [warning]);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!firstName || !lastName || !email || !phone || !description) {
+      alert("Please fill in all fields");
+      return;
     }
 
-    
+    try {
+      await contactMe(firstName, lastName, email, phone, description);
+      alert("Form submitted successfully!");
+      setWarning("");
+    } catch (err) {
+      setWarning(err.message);
+    }
+  }
 
   return (
     <>
@@ -42,7 +48,10 @@ export default function Home() {
         <Container>
           <Row>
             <Col className="text-center">
-              <h1 data-aos="fade-left" className="text-uppercase fw-semibold display-1">
+              <h1
+                data-aos="fade-left"
+                className="text-uppercase fw-semibold display-1"
+              >
                 Welcome to Airline-Point
               </h1>
               <h5 className="mt-3" data-aos="fade-right">
@@ -54,7 +63,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      
+
       <section id="about">
         <Container>
           <Row>
@@ -62,7 +71,8 @@ export default function Home() {
             <Col md={6} className="about-text">
               <h1>About the website</h1>
               <p>
-                Experienced in aviation field, from service to revenue management
+                Experienced in aviation field, from service to revenue
+                management
               </p>
 
               {/* Icon + Text list */}
@@ -90,7 +100,10 @@ export default function Home() {
                   </div>
                   <div>
                     <h5>Airports distance calculator</h5>
-                    <p>Calculate the distance between airports to see how many miles you can earn</p>
+                    <p>
+                      Calculate the distance between airports to see how many
+                      miles you can earn
+                    </p>
                   </div>
                 </div>
                 <div className="icon-item">
@@ -103,10 +116,12 @@ export default function Home() {
                   </div>
                   <div>
                     <h5>Point analysis</h5>
-                    <p>Quickly compute the cost per mile, then viewing the results along with a pie chart</p>
+                    <p>
+                      Quickly compute the cost per mile, then viewing the
+                      results along with a pie chart
+                    </p>
                   </div>
                 </div>
-
               </div>
             </Col>
 
@@ -122,66 +137,110 @@ export default function Home() {
         </Container>
       </section>
       {/*Counter */}
-    <section id="counter" className="section-padding">
-      <div className="container text-center">
-        <div className="row g-4">
-          <div className="col-lg-3 col-sm-6">
-            <h1>9,000+</h1>
-            <h6>Airports</h6>
-          </div>
-          <div className="col-lg-3 col-sm-6">
-            <h1>4 Types</h1>
-            <h6>Earn points methods</h6>
-          </div>
-          <div className="col-lg-3 col-sm-6">
-            <h1>3 Airline Alliances</h1>
-            <h6>Analysis pros & cons</h6>
-          </div>
-          <div className="col-lg-3 col-sm-6">
-            <h1>Canada based</h1>
-            <h6>From the perspective of departing from Canada, looking at various airlines</h6>
+      <section id="counter" className="section-padding">
+        <div className="container text-center">
+          <div className="row g-4">
+            <div className="col-lg-3 col-sm-6">
+              <h1>9,000+</h1>
+              <h6>Airports</h6>
+            </div>
+            <div className="col-lg-3 col-sm-6">
+              <h1>4 Types</h1>
+              <h6>Earn points methods</h6>
+            </div>
+            <div className="col-lg-3 col-sm-6">
+              <h1>3 Airline Alliances</h1>
+              <h6>Analysis pros & cons</h6>
+            </div>
+            <div className="col-lg-3 col-sm-6">
+              <h1>Canada based</h1>
+              <h6>
+                From the perspective of departing from Canada, looking at
+                various airlines
+              </h6>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-      {/*About the features accomplish in this project */}
-      <section id="features" className="section-padding">
+      {/*Contact */}
+      <section id="features" className="contact">
         <div className="container">
-            <div className="row">
-                <div className="col-12 text-center">
-                    <div className="section-title">
-                        <h1 className="display-4 fw-semibold">Contact me</h1>
-                    </div>
-                </div>
+          <div className="row">
+            <div className="col-12 text-center">
+              <div className="section-title">
+                <h1>Contact</h1>
+              </div>
             </div>
+          </div>
         </div>
         <Form className="contact-form" onSubmit={handleSubmit}>
+          <div className="row">
+            {/* First Name and Last Name */}
+            <div className="col-md-6">
+              <Form.Group>
+                <Form.Label>*First Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  id="firstname"
+                  name="firstname"
+                  onChange={(e) => setFirstName(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+            </div>
+            <div className="col-md-6">
+              <Form.Group>
+                <Form.Label>*Last Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  id="lastname"
+                  name="lastname"
+                  onChange={(e) => setLastName(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+            </div>
+          </div>
+
+          {/* Email Field */}
           <Form.Group>
-            <Form.Label>First Name</Form.Label>
-            <Form.Control type="text" id="firstname" name="firstname" onChange={e => setFirstName(e.target.value)}></Form.Control>
+            <Form.Label>*Email</Form.Label>
+            <Form.Control
+              type="text"
+              id="email"
+              name="email"
+              onChange={(e) => setEmail(e.target.value)}
+            ></Form.Control>
           </Form.Group>
+
+          {/* Phone Field */}
           <Form.Group>
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control type="text" id="lastname" name="lastname" onChange={e => setLastName(e.target.value)}></Form.Control>
+            <Form.Label>*Phone</Form.Label>
+            <Form.Control
+              type="number"
+              id="phone"
+              name="phone"
+              onChange={(e) => setPhone(e.target.value)}
+            ></Form.Control>
           </Form.Group>
+
+          {/* Description Field */}
           <Form.Group>
-            <Form.Label>Email</Form.Label>
-            <Form.Control type="text" id="email" name="email" onChange={e => setEmail(e.target.value)}></Form.Control>
+            <Form.Label>*Description</Form.Label>
+            <Form.Control
+              type="textarea"
+              id="description"
+              name="description"
+              onChange={(e) => setDescription(e.target.value)}
+            ></Form.Control>
           </Form.Group>
-          <Form.Group>
-            <Form.Label>Phone</Form.Label>
-            <Form.Control type="number" id="phone" name="phone" onChange={e => setPhone(e.target.value)}></Form.Control>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Description</Form.Label>
-            <Form.Control type="text" id="description" name="description" onChange={e => setDescription(e.target.value)}></Form.Control>
-          </Form.Group>
+
           <br />
-          <Button variant="primary" className="pull-right" type="submit">Submit</Button>
+          {/* Submit Button */}
+          <button variant="primary" className="submit-button" type="submit">
+            Submit
+          </button>
         </Form>
-    </section>
-    
+      </section>
     </>
   );
 }

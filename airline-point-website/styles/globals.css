@@ -193,13 +193,70 @@ a {
   background: linear-gradient(rgba(214, 212, 212, 0.507), rgba(214,212,212,0.438)), url('/pics/worldmap.jpg');
   background-position: center;
   background-size: cover;
-  padding: 100px 0;
+  padding: 100px;
   
 }
 
-#features{
-  margin: 40px;
+/*Contact Me*/
+.contact{
+  margin: 25px;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+}
+
+.contact h1{
+  font-size: 48px;
+}
+
+.contact-form {
+  max-width: 800px;
+  margin: 10px auto;
+  padding: 40px;
+  background: #ffffff; 
+  border-radius: 10px; 
   
+}
+
+
+.contact-title {
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-size: 36px;
+  color: #333333;
+}
+
+.contact-form .form-control {
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+}
+
+.contact-form .form-control:focus {
+  border-color: #f79c15; 
+  box-shadow: 0 0 5px rgba(247, 156, 21, 0.5);
+}
+
+/* Submit button */
+.submit-button {
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #d4a017 ; 
+  border: none;
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #c18e0e ; 
+}
+
+.submit-button:active {
+  background-color: #b27c0a ; 
+}
+
+.submit-button:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 /*----------------------------------------------------------About---------------------------------------------*/
