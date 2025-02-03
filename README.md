@@ -26,3 +26,6 @@ After the pandemic, people have been earning airline miles through purchasing ai
 
 ***Development Environment***
 - VS Code
+
+***Unit Testing***
+- Cypress
