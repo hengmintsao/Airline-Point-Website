@@ -4,7 +4,7 @@ import { contactMe } from "@/lib/authenticate";
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-22 Description: Create Home page, all introduction and information(Using css) #TO-DO: Test
-
+2. Date: 2025-Feb-03 Description: Remove redundant codes, test complete. #TO-DO: None
 
 
 =====================================================================================================================================================

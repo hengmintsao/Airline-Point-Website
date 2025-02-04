@@ -5,7 +5,7 @@ import { getToken } from "@/lib/authenticate";
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-29 Description: Try to get profile data from mongoDB(haven't finished yet)  #TO-DO: Finish it
 2. Date: 2025-Jan-30 Description: Finish get profile data from mongoDB and CSS  #TO-DO: Add edit feature
-
+3. Date: 2025-Feb-03 Description: Remove redundant codes, test complete. #TO-DO: None
 =====================================================================================================================================================
 */
 
@@ -19,8 +19,6 @@ export default function Profile(){
     const token = getToken();
     
     useEffect(() => {
-
-
         async function fetchUserData() {
             try {
                 const response = await fetch(`${serverUrl}/api/user/profile`, {
@@ -34,7 +32,6 @@ export default function Profile(){
                 if (!response.ok) {
                     throw new Error(`Error: ${response.statusText}`);
                 }
-
                 const data = await response.json();
                 setUserData(data);
             } catch (err) {
@@ -45,7 +42,6 @@ export default function Profile(){
         fetchUserData();
     }, []);
 
-    
     if (error) {
         return <p>Error: {error}</p>;
     }

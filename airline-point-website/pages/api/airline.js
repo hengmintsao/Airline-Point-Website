@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-07 Description: About.js can view card list, CardDetail basic feature complete. #TO-DO: Might need to consider storage folder and names might too similar to another folder
-
+2. Date: 2025-Feb-03 Description: Remove redundant codes, test complete. #TO-DO: None
 
 
 =====================================================================================================================================================
@@ -32,9 +32,7 @@ export default async function handler(req,res){
     }
 
     try{
-        // if (!mongoose.connection.readyState) {
-        //     console.log("Connecting to MongoDB...");
-        // }
+        
         await mongoose.connect(MONGO_URL);
         console.log("MongoDB connected.");
         const airlines = await Airline.find();

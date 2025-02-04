@@ -11,8 +11,6 @@ export default function App({ Component, pageProps }) {
   const fetcher = async (url) => {
     const res = await fetch(url);
 
-    // If the status code is not in the range 200-299,
-    // still try to parse and throw it.
     if (!res.ok) {
       const error = new Error("An error occurred while fetching the data.");
 

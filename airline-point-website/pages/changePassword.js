@@ -5,7 +5,7 @@ import { getToken } from "@/lib/authenticate";
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-30 Description: update changePassword.js and CSS design. #TO-DO: Test
-
+2. Date: 2025-Feb-03 Description: Remove redundant codes, test complete. #TO-DO: None
 
 =====================================================================================================================================================
 */
@@ -16,8 +16,6 @@ export default function ChangePassword() {
   const [newPassword, setNewPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [error, setError] = useState(null);
-  
-
   const token = getToken();
   const router = useRouter();
 
@@ -29,7 +27,6 @@ export default function ChangePassword() {
         setError("New password and confirm password do not match.");
         return;
       }
-
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/changePassword`,
@@ -42,9 +39,6 @@ export default function ChangePassword() {
           body: JSON.stringify({ oldPassword, newPassword }),
         }
       );
-
-
-
       if (!res.ok) {
         const errData = await res.json();
         throw new Error(errData.error || "Failed to update password");

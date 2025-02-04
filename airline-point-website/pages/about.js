@@ -7,6 +7,7 @@ import { Row, Col } from "react-bootstrap";
 2. Date: 2025-Jan-22 Description: Add CSS feature. #TO-DO: Test 
 3. Date: 2025-Jan-25 Description: Revise CSS design #TO-DO: Test 
 4. Date: 2025-Jan-29 Description: Revise some contents #TO-DO: Test 
+5. Date: 2025-Feb-03 Description: Remove redundant codes, test complete. #TO-DO: None
 
 =====================================================================================================================================================
 */

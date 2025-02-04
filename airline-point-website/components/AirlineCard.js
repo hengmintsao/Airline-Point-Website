@@ -1,11 +1,11 @@
 import { Card, Button } from "react-bootstrap";
-import Error from "next/error";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-07 Description: About.js can view card list, CardDetail basic feature complete. #TO-DO: The code needs to be concise. Remove any unnecessary or unused code during subsequent reviews
-2. Date: 2025-Jan-25 Description: Add CSS Design. #TO-DO: Test 
+2. Date: 2025-Jan-25 Description: Add CSS Design. #TO-DO: 
+3. Date: 2025-Feb-03 Description: Remove redundant codes, test complete. #TO-DO: None
 
 
 =====================================================================================================================================================
@@ -14,30 +14,6 @@ import { useState, useEffect } from "react";
 export default function AirlineCard({airline}){
 
     const { Image, Name, Alliance, Code, Website, _id } = airline;
-
-    // const [airlines, setAirlines] = useState([]);
-    // const [error, setError] = useState(null);
-
-// Get airline from API
-// useEffect(()=>{
-//     async function fetchAirlines(){
-
-//         try{
-//             const response = await fetch("/api/airlines");
-//             if(!response.ok){
-//                 throw new Error("Failed to fetch airline data");
-//             }
-//             const data = await response.json();
-//             setAirlines(data);
-
-//         }catch(err){
-//             setError(err.message);
-//         }
-//     }
-
-//     fetchAirlines();
-// },[]);
-
 
 return (
     <>

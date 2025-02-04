@@ -6,7 +6,7 @@ import { getToken } from "@/lib/authenticate";
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-30 Description: Update editProfile.js and CSS design. #TO-DO: Test
-
+2. Date: 2025-Feb-03 Description: Remove redundant codes, test complete. #TO-DO: None
 
 =====================================================================================================================================================
 */
@@ -112,7 +112,6 @@ export default function EditProfile() {
             Click to change
           </Button>
         </div>
-
        <Form.Group className="edit-profile-group">
           <Form.Label className="edit-profile-label">*Email</Form.Label>
           <Form.Control
@@ -123,7 +122,6 @@ export default function EditProfile() {
             onChange={handleChange}
           />
         </Form.Group>
-
         <Form.Group className="edit-profile-group">
           <Form.Label className="edit-profile-label">*Nationality</Form.Label>
           <Form.Control
@@ -134,7 +132,6 @@ export default function EditProfile() {
             onChange={handleChange}
           />
         </Form.Group>
-
         <Form.Group className="edit-profile-group">
           <Form.Label className="edit-profile-label">*Main Airport</Form.Label>
           <Form.Control
@@ -145,7 +142,6 @@ export default function EditProfile() {
             onChange={handleChange}
           />
         </Form.Group>
-
         <Form.Group className="edit-profile-group">
           <Form.Label className="edit-profile-label">Preference Carrier</Form.Label>
           <Form.Control
@@ -161,7 +157,6 @@ export default function EditProfile() {
             }
           />
         </Form.Group>
-
         <Form.Group className="edit-profile-group">
           <Form.Label className="edit-profile-label">Preference Alliance</Form.Label>
           <Form.Control
@@ -177,7 +172,6 @@ export default function EditProfile() {
             }
           />
         </Form.Group>
-
         <Button variant="primary" type="submit" className="edit-profile-save-btn">
           Save
         </Button>

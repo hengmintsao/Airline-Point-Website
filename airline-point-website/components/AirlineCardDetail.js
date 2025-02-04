@@ -10,6 +10,7 @@ import { addToComparsion, removeComparsion } from "@/lib/userData";
 2. Date: 2025-Jan-12 Description: Using Jotai to implement comparsion table(similar to shopping cart feature), add/delete in AirlineCardDetail.js and shown on comparsion.js. #TO-DO: might need to change required information.
 3. Date: 2025-Jan-17 Description: Change showAdded, update useEffect and import from userdata to fit features #TO-DO: might need to change required information.
 4. Date: 2025-Jan-22 Description: Add CSS feature. #TO-DO: Test 
+5. Date: 2025-Feb-03 Description: Remove redundant codes, test complete. #TO-DO: None
 =====================================================================================================================================================
 */
 
@@ -17,32 +18,24 @@ export default function AirlineCardDetail({id}){
     const [airline, setAirline] = useState(null);
     const [error, setError] = useState(null);
     const [comparsionList, setComparsionList] = useAtom(comparsionAtom);
-
-    const [showAdded, setShowAdded] = useState(false); // change to false
-
-    useEffect(() => {
-      //console.log("comparsionList before add", comparsionList); test code
-      setShowAdded(comparsionList?.includes(id)); // modify comparsionList? here
-      //console.log("comparsionList after add", comparsionList); test code
-    }, [comparsionList, id]);
-
+    const [showAdded, setShowAdded] = useState(false); 
 
     // Function to control comparsion List, change to async
     async function comparsionClicked(){
       if(showAdded === true){
-        setComparsionList(await removeComparsion(id)); // change to this
-        //setComparsionList(current => current.filter(com => com != id));
+        setComparsionList(await removeComparsion(id));
         setShowAdded(false);
       }else{
-        setComparsionList(await addToComparsion(id)); // change to this
-        //setComparsionList(current => [...current, id]);
-        //console.log("comparsionList before add", comparsionList); test code
+        setComparsionList(await addToComparsion(id)); 
         setShowAdded(true);
       }
     }
 
-    // const router = useRouter();
-    // const { id } = router.query; 
+    useEffect(() => {
+      
+      setShowAdded(comparsionList?.includes(id)); 
+      
+    }, [comparsionList, id]);
 
     useEffect(() =>{
         async function fetchAirlineDetails(){
@@ -57,8 +50,6 @@ export default function AirlineCardDetail({id}){
             }catch(err){
                 setError(err.message);
             }
-        
-            
         }
         if(id){
             fetchAirlineDetails();

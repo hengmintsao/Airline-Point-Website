@@ -11,9 +11,8 @@ export default function MainNav(){
 
     const [isExpanded, setIsExpanded] = useState(false);
     const router = useRouter();
-
     let token = readToken();
-
+    
     function logout() {
       removeToken();
       router.push('/');

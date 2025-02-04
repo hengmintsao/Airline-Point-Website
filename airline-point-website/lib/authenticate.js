@@ -2,7 +2,7 @@ import { jwtDecode } from "jwt-decode";
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-14 Description: authenticate.js authenticated to view or interact with your data #TO-DO: Test
-
+2. Date: 2025-Feb-03 Description: Remove redundant codes, test complete. #TO-DO: None
 
 
 =====================================================================================================================================================
@@ -62,7 +62,7 @@ export function readToken(){
 }
 
 
-// Chech if user with token
+// Check if user with token
 export function isAuthenticated(){
     const token = readToken();
     return token ? true : false;
@@ -99,6 +99,7 @@ export async function registerUser(user, password, password2,email, nationality,
 
 }
 
+// Home page contact form
 export async function contactMe(firstname, lastname, email, phone, description){
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/contact`,{
         method: 'POST',

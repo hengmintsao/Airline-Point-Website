@@ -1,6 +1,6 @@
 import { registerUser } from "@/lib/authenticate";
 import AutoComplete from "@/components/AutoComplete";
-import { Card, Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 1. Date: 2025-Jan-14 Description: Create Register page, basic implementation   #TO-DO: AutoComplete(Not yet finished, has errors)
 2. Date: 2025-Jan-28 Description: AutoComplete finished, Update CSS   #TO-DO: 
 3. Date: 2025-Jan-29 Description: Revise required * symbols  #TO-DO: Test
-
+4. Date: 2025-Feb-03 Description: Remove redundant codes, test complete. #TO-DO: None
 
 =====================================================================================================================================================
 */
@@ -49,15 +49,11 @@ export default function Register(){
               const countries = data.map((country) => country.name || "Unknown Country");
                 console.log("Those datas are: ", countries); // test codes
                 setNationalityOption(countries);
-
             }catch(err){
                 setWarning(err.message);
                 setNationalityOption([]);
-            }
-        
-            
+            }  
         }
-        
         fetchAllNationalityDetails();
     },[]);
 
@@ -80,7 +76,6 @@ export default function Register(){
           setAirportOption([]);
         }
       }
-  
       fetchAirports();
     }, []);
 
@@ -93,7 +88,6 @@ async function handleSubmit(e){
     try{
         await registerUser(user, password, password2, email, nationality, mainAirport, preferenceCarrier, preferenceAlliance);
         router.push('/login');
-
     }catch(err){
         setWarning(err.message);
     }
@@ -126,7 +120,7 @@ return(
         <br/ >
         <Form.Group>
           <Form.Label>*Nationality:</Form.Label><AutoComplete id="nationality" name="nationality" options={Array.isArray(nationalityOption) ? nationalityOption : []} onChange={(value) => {
-        /*console.log("Selected nationality:", value);*/ setNationality(value || ""); /*console.log("Nationality options:", nationalityOption);*/}}  /> 
+         setNationality(value || ""); }} /> 
         </Form.Group>
         <br />
 

@@ -12,7 +12,7 @@ import { addToHistory } from "@/lib/userData";
 3. Date: 2025-Jan-17 Description: Add addToHistory, update submitform function   #TO-DO: Haven't test
 4. Date: 2025-Jan-24 Description: Update CSS for piechart, redesign costPerMile calculator   #TO-DO: Haven't test
 5. Date: 2025-Jan-29 Description: Update a function to check if history is exceed limit, add required * symbols   #TO-DO: Haven't test
-
+6. Date: 2025-Feb-03 Description: Remove redundant codes, test complete. #TO-DO: None
 
 
 =====================================================================================================================================================
@@ -71,7 +71,7 @@ export default function CostPerMiles() {
         2.By buying points #FF8000  Orange
         3.By credit card program #3333FF  Blue
         4.Others #00CC66  Green
-        */
+    */
     const chartData = [
       { title: "By flight", value: 0, color: "#FF0000" },
       { title: "By buying points", value: 0, color: "#FF8000" },
@@ -109,7 +109,6 @@ export default function CostPerMiles() {
 
   async function submitForm() {
     const data = getValues();
-    //console.log(data); //test code
 
     if(searchHistory.length >= 20){
       alert("You have reached the maximum limit of 20 history records. Please delete old records at 'Search History' to add new ones.");
@@ -153,27 +152,18 @@ export default function CostPerMiles() {
       setTotalMileage(totalMileage);
 
     const chartData = calculatePieChartData(data);
-    //console.log('PieChart Data:', chartData); //test code
     setPieChartData(chartData);
 
     try {
         const formattedData = { airline: data.airline, history: formattedHistory, totalMileage,  costPerMile};
         await addToHistory(formattedData);
-        //console.log("History successfully added"); // test code
+        
         setSearchHistory((prev) => [...prev, formattedData]);
     } catch (error) {
         console.error("Failed to add history:", error);
     }
     setSubmitted(true);
-    //setSearchHistory(await addToHistory(data));
-
-    // setSearchHistory(current => {
-    //     const newHistory = [...current, data];
-    //     //console.log('After push -> newHistory:', newHistory); // test code
-
-    //     return newHistory;
-    //   });
-   
+  
   }
 
   return (
@@ -182,7 +172,7 @@ export default function CostPerMiles() {
         <h2 className="text-center">Mile Cost Calculator</h2>
         <h5 className="text-center">Please select airline, earn type, and input miles you need and the cost of the miles.</h5>
         <h5 className="text-center">The calculation and pie chart will shown after click submit button</h5>
-        <h5 className="text-center">(You can store up to 20 searches in 'Search History')</h5>
+        <h5 className="text-center">(You can store up to 20 searches in &#39;Search History&#39;)</h5>
       <Form onSubmit={handleSubmit(submitForm)} className="form-group">
         {/*1. Select airline */}
         <Form.Group className="form-group">

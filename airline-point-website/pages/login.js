@@ -11,7 +11,7 @@ import { comparsionAtom, searchHistoryAtom } from "@/store";
 1. Date: 2025-Jan-14 Description: Create Login page, input user and password  #TO-DO: Test
 2. Date: 2025-Jan-28 Description: Update CSS(Complete)  #TO-DO: Test
 3. Date: 2025-Jan-29 Description: Revise required * symbols  #TO-DO: Test
-
+4. Date: 2025-Feb-03 Description: Remove redundant codes, test complete. #TO-DO: None
 
 
 =====================================================================================================================================================

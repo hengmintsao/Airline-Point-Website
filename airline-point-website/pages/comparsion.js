@@ -9,7 +9,7 @@ import { readToken } from "@/lib/authenticate";
 // 1. Date: 2025-Jan-12 Description: Using Jotai to implement comparsion table(similar to shopping cart feature), add/delete in AirlineCardDetail.js and shown on comparsion.js. #TO-DO: might need to change required information.
 // 2. Date: 2025-Jan-17 Description:  update useEffect  #TO-DO: might need to change required information.
 // 3. Date: 2025-Jan-25 Description: Comparsion CSS design  #TO-DO: test
-//
+// 4. Date: 2025-Feb-03 Description: Remove redundant codes, test complete. #TO-DO: None
 // =====================================================================================================================================================
 // */
 
@@ -43,7 +43,6 @@ export default function Comparsion() {
           })
         );
         setAirlinesData(results);
-        //console.log("test",comparsionList); test
       } catch (err) {
         setError(err.message);
       }

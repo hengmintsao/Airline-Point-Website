@@ -7,7 +7,7 @@ import { readToken } from "@/lib/authenticate";
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-11 Description: history.js can allow users to keep track of previous searches and re-run/delete them if they want. #TO-DO: 
 2. Date: 2025-Jan-25 Description: Add CSS, show more elements(Finish). #TO-DO: Test
-
+3. Date: 2025-Feb-03 Description: Remove redundant codes, test complete. #TO-DO: None
 
 =====================================================================================================================================================
 */
@@ -35,8 +35,6 @@ export default function History() {
   function historyClicked(e, index) {
     e.preventDefault();
 
-    const data = searchHistory[index];
-    console.log("History clicked data:", data); // test code
   }
 
   async function removeHistoryClicked(e, index) {

@@ -2,7 +2,7 @@ import { getToken } from "./authenticate";
 
 /* =============================================================History==============================================================================
 1. Date: 2025-Jan-14 Description: userData.js authenticated to view or interact with your data #TO-DO: Test
-
+2. Date: 2025-Feb-03 Description: Remove redundant codes, test complete. #TO-DO: None
 
 
 =====================================================================================================================================================

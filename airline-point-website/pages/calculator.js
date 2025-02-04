@@ -9,7 +9,7 @@ import AutoComplete from "@/components/AutoComplete";
 3. Date: 2025-Jan-23 Description: CSS Added(Still working). #TO-DO: Might need AutoComplete here
 4. Date: 2025-Jan-28 Description: CSS Added, AutoComplete complete. #TO-DO:
 5. Date: 2025-Jan-29 Description: Revise required * symbols  #TO-DO: Test
-
+6. Date: 2025-Feb-03 Description: Remove redundant codes, test complete. #TO-DO: None
 =====================================================================================================================================================
 */
 
@@ -50,10 +50,6 @@ export default function Calculator(){
     fetchAirports();
   }, []);
 
-
-
-
-    
     // Handle Swap
     function handleSwap(){ 
       const currentOrigin = getValues("origin");
@@ -64,7 +60,6 @@ export default function Calculator(){
       setOrigin(currentDest);
       setDest(currentOrigin);
     };
-
 
     //Calculation function
     const getDistanceBetweenPoints = (latitude1, longitude1, latitude2, longitude2) => {
@@ -102,8 +97,7 @@ export default function Calculator(){
         setDistance(null);
         setSubmitted(false);
 
-        try {
-            
+        try {   
           // Origin 
             const originResponse = await fetch(
               `${serverUrl}/api/user/calculator?iata=${originShort}`,
@@ -162,7 +156,6 @@ export default function Calculator(){
                       alt="repeat-line"
                       className="swap-icon"
                       onClick={handleSwap} />
-        {/* <Button variant="primary" onClick={handleSwap}>Swap</Button> */}
         <br />
             <Form.Group className="form-group">
             <Form.Label>*Destination Airport:</Form.Label>
